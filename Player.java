@@ -1,4 +1,4 @@
-package NewRobotTurtle;
+package newrobotturtle;
 import java.util.*;
 
 
@@ -30,7 +30,6 @@ public class Player {
    */
   private ArrayList program;
   private Turtle turtle;
-  private int playerID;
   
   //
   // Constructors
@@ -180,27 +179,13 @@ public class Player {
   }
 
 
-  public ArrayList getGraveyard() {
-    return graveyard;
-  }
-
-
-
-  public int getPlayerID() {
-    return playerID;
-  }
-
-  public void setPlayerID(int playerID) {
-    this.playerID = playerID;
-  }
-
   /**
    * retourne les positions X Y en array
    * @return       array
    */
   public ArrayList chooseTile()
   {
-    ArrayList<Integer> Coord = new ArrayList<Integer>();
+    ArrayList<Int> Coord = new ArrayList<Int>();
     //TODO vérifier si la case est valide, et renvoyer les coordonées
     System.out.println("Emplacement du mur choisis");
     return (Coord);
@@ -233,7 +218,7 @@ public class Player {
 	  switch(choix)
 	  {
 	     case 1:
-	    	 placeWall();
+	    	 chooseWall();
 	    	 break;
 	     case 2:
 	    	 addCard();
@@ -252,7 +237,7 @@ public class Player {
     chooseWall();
     chooseTile();
     System.out.println("Mur placé");
-    //TODO placer le mure sur la carte
+    //TODO placer le mur sur la carte
   }
 
 
@@ -260,7 +245,8 @@ public class Player {
    */
   private void addCard()
   {
-
+    //TODO ajout d'une carte
+    addToProgram(Card chooseCard());
   }
 
 
@@ -281,9 +267,9 @@ public class Player {
 
   /**
    */
-  private char chooseWall()
+  private Char chooseWall()
   {
-    //TODO Choix du mure, et vérifier si il en reste
+    //TODO Choix du mur, et vérifier si il en reste
     System.out.println("Type de mur choisis");
     return ('I');
   }
@@ -293,6 +279,9 @@ public class Player {
    */
   private void chooseCard()
   {
+    //TODO Choix de la carte et vérification si elle est dans la main
+    System.out.println("Carte choisis");
+    return (Card.LeftCard());
   }
 
 
@@ -301,6 +290,8 @@ public class Player {
    */
   private void addToProgram(Card card)
   {
+    //TODO ajouter une carte au programme
+    System.out.println("Carte ajoutée");
   }
 
 

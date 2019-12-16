@@ -1,4 +1,4 @@
-package NewRobotTurtle;
+package newrobotturtle;
 
 /**
  * Class LeftCard
@@ -13,19 +13,9 @@ public class LeftCard extends Card {
   //
   // Constructors
   //
-  public LeftCard () { };
-  
-  //
-  // Methods
-  //
+  public LeftCard () extends Card{
+    //TODO faire tourner la tortue a gauche
+  };
 
-
-  //
-  // Accessor methods
-  //
-
-  //
-  // Other methods
-  //
 
 }
