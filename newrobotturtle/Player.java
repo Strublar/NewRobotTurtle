@@ -186,8 +186,6 @@ public class Player {
   public ArrayList chooseTile()
   {
     ArrayList<Int> Coord = new ArrayList<Int>();
-    cars.add(3);
-    cars.add(2);
     //TODO vérifier si la case est valide, et renvoyer les coordonées
     System.out.println("Emplacement du mure choisis");
     return (Coord);
