@@ -1,5 +1,4 @@
-//Matteo est passé par là
-package newrobotturtle;
+package NewRobotTurtle;
 import java.util.*;
 
 
@@ -13,7 +12,16 @@ public class Game {
   //
 
   private int currentPlayer;
-  /**
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    /**
    * tableau de joueurs
    */
   private Player[] players;
@@ -71,7 +79,7 @@ public class Game {
    */
   public void startGame(int playerNumber)
   {
-	  System.out.println("ON crée une partie avec "+playerNumber+" joueurs");
+	  System.out.println("ON crï¿½e une partie avec "+playerNumber+" joueurs");
 	  this.initGame();
   }
 
@@ -84,7 +92,7 @@ public class Game {
 	  //TODO initialisation des variables de la partie
 	  
 	  
-	  System.out.println("Début de la partie");
+	  System.out.println("Dï¿½but de la partie");
 	  this.distributeTurn();
   }
 

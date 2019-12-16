@@ -1,9 +1,9 @@
-package newrobotturtle;
+package NewRobotTurtle;
 
 /**
- * Class ShootCard
+ * Class Main
  */
-public class ShootCard extends Card {
+public class Main {
 
   //
   // Fields
@@ -13,7 +13,7 @@ public class ShootCard extends Card {
   //
   // Constructors
   //
-  public ShootCard () { };
+  public Main () { };
   
   //
   // Methods

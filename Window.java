@@ -1,4 +1,4 @@
-package newrobotturtle;
+package NewRobotTurtle;
 
 import javax.swing.JFrame;
 

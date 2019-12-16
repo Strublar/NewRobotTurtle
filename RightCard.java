@@ -1,9 +1,9 @@
-package newrobotturtle;
+package NewRobotTurtle;
 
 /**
- * Class ForwardCard
+ * Class RightCard
  */
-public class ForwardCard extends Card {
+public class RightCard extends Card {
 
   //
   // Fields
@@ -13,7 +13,7 @@ public class ForwardCard extends Card {
   //
   // Constructors
   //
-  public ForwardCard () { };
+  public RightCard () { };
   
   //
   // Methods

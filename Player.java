@@ -1,4 +1,4 @@
-package newrobotturtle;
+package NewRobotTurtle;
 import java.util.*;
 
 
@@ -30,6 +30,7 @@ public class Player {
    */
   private ArrayList program;
   private Turtle turtle;
+  private int playerID;
   
   //
   // Constructors
@@ -179,17 +180,29 @@ public class Player {
   }
 
 
+  public ArrayList getGraveyard() {
+    return graveyard;
+  }
+
+
+
+  public int getPlayerID() {
+    return playerID;
+  }
+
+  public void setPlayerID(int playerID) {
+    this.playerID = playerID;
+  }
+
   /**
    * retourne les positions X Y en array
    * @return       array
    */
   public ArrayList chooseTile()
   {
-    ArrayList<Int> Coord = new ArrayList<Int>();
-    cars.add(3);
-    cars.add(2);
+    ArrayList<Integer> Coord = new ArrayList<Integer>();
     //TODO vérifier si la case est valide, et renvoyer les coordonées
-    System.out.println("Emplacement du mure choisis");
+    System.out.println("Emplacement du mur choisis");
     return (Coord);
   }
 
@@ -220,7 +233,7 @@ public class Player {
 	  switch(choix)
 	  {
 	     case 1:
-	    	 chooseWall();
+	    	 placeWall();
 	    	 break;
 	     case 2:
 	    	 addCard();
@@ -238,7 +251,7 @@ public class Player {
   {
     chooseWall();
     chooseTile();
-    System.out.println("Mure placé");
+    System.out.println("Mur placé");
     //TODO placer le mure sur la carte
   }
 
@@ -247,6 +260,7 @@ public class Player {
    */
   private void addCard()
   {
+
   }
 
 
@@ -267,10 +281,10 @@ public class Player {
 
   /**
    */
-  private Char chooseWall()
+  private char chooseWall()
   {
     //TODO Choix du mure, et vérifier si il en reste
-    System.out.println("Type de mure choisis");
+    System.out.println("Type de mur choisis");
     return ('I');
   }
 

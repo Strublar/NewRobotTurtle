@@ -1,4 +1,4 @@
-package newrobotturtle;
+package NewRobotTurtle;
 
 /**
  * Class Menu
@@ -31,7 +31,7 @@ public class Menu {
   /**
    * @return       int
    */
-  private int choosePlayersCount()
+  public int choosePlayersCount()
   {
       return 0;
   }
