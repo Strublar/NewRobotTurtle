@@ -15,6 +15,7 @@ public class ForwardCard extends Card {
   //
   public ForwardCard () extends Card {
     //TODO faire avancer la tortue, et verifier si le déplacement est possible
+    System.out.println("Carte avancer");
   };
 
 }
