@@ -15,10 +15,8 @@ public class Card {
   //
   // Constructors
   //
-  public Card(int maxNumber) {
-    this.maxNumber = maxNumber;
-  }
-
+  public Card () { };
+  
   //
   // Methods
   //
@@ -52,8 +50,6 @@ public class Card {
    */
   public void effect()
   {
-    //TODO ?
-    FowardCard();
   }
 
 
