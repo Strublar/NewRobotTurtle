@@ -187,7 +187,7 @@ public class Player {
   {
     ArrayList<Int> Coord = new ArrayList<Int>();
     //TODO vérifier si la case est valide, et renvoyer les coordonées
-    System.out.println("Emplacement du mure choisis");
+    System.out.println("Emplacement du mur choisis");
     return (Coord);
   }
 
@@ -236,8 +236,8 @@ public class Player {
   {
     chooseWall();
     chooseTile();
-    System.out.println("Mure placé");
-    //TODO placer le mure sur la carte
+    System.out.println("Mur placé");
+    //TODO placer le mur sur la carte
   }
 
 
@@ -245,6 +245,8 @@ public class Player {
    */
   private void addCard()
   {
+    //TODO ajout d'une carte
+    addToProgram(Card chooseCard());
   }
 
 
@@ -267,8 +269,8 @@ public class Player {
    */
   private Char chooseWall()
   {
-    //TODO Choix du mure, et vérifier si il en reste
-    System.out.println("Type de mure choisis");
+    //TODO Choix du mur, et vérifier si il en reste
+    System.out.println("Type de mur choisis");
     return ('I');
   }
 
@@ -277,6 +279,9 @@ public class Player {
    */
   private void chooseCard()
   {
+    //TODO Choix de la carte et vérification si elle est dans la main
+    System.out.println("Carte choisis");
+    return (Card.LeftCard());
   }
 
 
@@ -285,6 +290,8 @@ public class Player {
    */
   private void addToProgram(Card card)
   {
+    //TODO ajouter une carte au programme
+    System.out.println("Carte ajoutée");
   }
 
 
