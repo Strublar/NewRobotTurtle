@@ -13,9 +13,19 @@ public class ForwardCard extends Card {
   //
   // Constructors
   //
-  public ForwardCard () extends Card {
-    //TODO faire avancer la tortue, et verifier si le déplacement est possible
-    System.out.println("Carte avancer");
-  };
+  public ForwardCard () { };
+  
+  //
+  // Methods
+  //
+
+
+  //
+  // Accessor methods
+  //
+
+  //
+  // Other methods
+  //
 
 }

@@ -13,9 +13,19 @@ public class LeftCard extends Card {
   //
   // Constructors
   //
-  public LeftCard () extends Card{
-    //TODO faire tourner la tortue a gauche
-  };
+  public LeftCard () { };
+  
+  //
+  // Methods
+  //
 
+
+  //
+  // Accessor methods
+  //
+
+  //
+  // Other methods
+  //
 
 }
