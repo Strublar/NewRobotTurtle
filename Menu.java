@@ -13,8 +13,11 @@ public class Menu {
   //
   // Constructors
   //
-  public Menu () { };
-  
+  public Menu () {
+
+
+  };
+
   //
   // Methods
   //
@@ -33,7 +36,8 @@ public class Menu {
    */
   public int choosePlayersCount()
   {
-      return 0;
+    Window.setWindowState(String "Menu");
+    mouseClicked();
   }
 
 
