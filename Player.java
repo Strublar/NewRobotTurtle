@@ -21,7 +21,7 @@ public class Player {
   /**
    * liste de char
    */
-  private ArrayList hand;
+  private Card[] hand;
   /**
    * lsite de char
    */
@@ -34,7 +34,7 @@ public class Player {
 
   private int playerID;
   private String playerState;
-
+  private Card selectedCard;
   //
   // Constructors
   //
@@ -49,6 +49,14 @@ public class Player {
   // Accessor methods
   //
 
+
+  public Card getSelectedCard() {
+    return selectedCard;
+  }
+
+  public void setSelectedCard(Card selectedCard) {
+    this.selectedCard = selectedCard;
+  }
 
   public String getPlayerState() {
     return playerState;
@@ -95,11 +103,11 @@ public class Player {
     this.deck = deck;
   }
 
-  public ArrayList getHand() {
+  public Card[] getHand() {
     return hand;
   }
 
-  public void setHand(ArrayList hand) {
+  public void setHand(Card[] hand) {
     this.hand = hand;
   }
 
@@ -203,7 +211,6 @@ public class Player {
   private void addCard()
   {
     //TODO ajout d'une carte
-    //addToProgram(Card chooseCard());
     this.playerState = "AddCard";
   }
 
@@ -235,21 +242,20 @@ public class Player {
 
   /**
    */
-  private void chooseCard()
+  public void chooseCard(int select)
   {
-    //TODO Choix de la carte et vérification si elle est dans la main
     System.out.println("Carte choisis");
-   // return (new LeftCard());
+    this.selectedCard = this.hand[select];
   }
 
 
   /**
-   * @param        card
    */
-  private void addToProgram(Card card)
+  public void addToProgram()
   {
-    //TODO ajouter une carte au programme
+    //TODO ajouter une carte au programme et la retirer de la main
     System.out.println("Carte ajoutée");
+
   }
 
 

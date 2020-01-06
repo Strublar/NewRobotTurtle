@@ -68,11 +68,14 @@ public class Mousy implements MouseListener{
               if(e.getY()>= offsetY && e.getY()<= offsetY+height)
               {
                 //Clic sur une carte à ajouter
+                this.game.getPlayers()[this.game.getCurrentPlayer()].chooseCard(i);
 
               }
               else if(e.getY()>= offsetY+betweenY && e.getY()<= offsetY+height+betweenY)
               {
                 //Clic de validation
+                this.game.getPlayers()[this.game.getCurrentPlayer()].addToProgram();
+
               }
             }
           }

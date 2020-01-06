@@ -12,6 +12,7 @@ public class NewRobotTurtle {
     public static void main(String[] args) {
         Menu menu = new Menu();
         Game game= new Game();
+        Window window = new Window("Menu", game);
         game.startGame(menu.choosePlayersCount());
     }
     
