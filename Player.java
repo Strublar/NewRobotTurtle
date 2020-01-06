@@ -1,4 +1,5 @@
-package newrobotturtle;
+package NewRobotTurtle;
+
 import java.util.*;
 
 
@@ -30,7 +31,9 @@ public class Player {
    */
   private ArrayList program;
   private Turtle turtle;
-  
+
+  private int playerID;
+
   //
   // Constructors
   //
@@ -44,6 +47,20 @@ public class Player {
   //
   // Accessor methods
   //
+
+
+  public ArrayList getGraveyard() {
+    return graveyard;
+  }
+
+
+  public int getPlayerID() {
+    return playerID;
+  }
+
+  public void setPlayerID(int playerID) {
+    this.playerID = playerID;
+  }
 
   /**
    * Set the value of nbStoneWall
@@ -185,7 +202,7 @@ public class Player {
    */
   public ArrayList chooseTile()
   {
-    ArrayList<Int> Coord = new ArrayList<Int>();
+    ArrayList<Integer> Coord = new ArrayList<Integer>();
     //TODO vérifier si la case est valide, et renvoyer les coordonées
     System.out.println("Emplacement du mur choisis");
     return (Coord);
@@ -246,7 +263,7 @@ public class Player {
   private void addCard()
   {
     //TODO ajout d'une carte
-    addToProgram(Card chooseCard());
+    //addToProgram(Card chooseCard());
   }
 
 
@@ -267,7 +284,7 @@ public class Player {
 
   /**
    */
-  private Char chooseWall()
+  private char chooseWall()
   {
     //TODO Choix du mur, et vérifier si il en reste
     System.out.println("Type de mur choisis");
@@ -281,7 +298,7 @@ public class Player {
   {
     //TODO Choix de la carte et vérification si elle est dans la main
     System.out.println("Carte choisis");
-    return (Card.LeftCard());
+   // return (new LeftCard());
   }
 
 

@@ -1,4 +1,4 @@
-package newrobotturtle;
+package NewRobotTurtle;
 
 
 /**
@@ -15,8 +15,8 @@ public class Card {
   //
   // Constructors
   //
-  public Card(int maxNumber) {
-    this.maxNumber = maxNumber;
+  public Card() {
+
   }
 
   //
@@ -53,7 +53,7 @@ public class Card {
   public void effect()
   {
     //TODO ?
-    FowardCard();
+    //FowardCard();
   }
 
 

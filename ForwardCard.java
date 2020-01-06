@@ -1,4 +1,4 @@
-package newrobotturtle;
+package NewRobotTurtle;
 
 /**
  * Class ForwardCard
@@ -13,9 +13,9 @@ public class ForwardCard extends Card {
   //
   // Constructors
   //
-  public ForwardCard () extends Card {
+  public ForwardCard ()  {
     //TODO faire avancer la tortue, et verifier si le déplacement est possible
-    System.out.println("Carte avancer");
-  };
+   // System.out.println("Carte avancer");
+  }
 
 }

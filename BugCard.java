@@ -13,7 +13,7 @@ public class BugCard extends Card {
   //
   // Constructors
   //
-  public BugCard () { };
+  public BugCard (){ };
   
   //
   // Methods
