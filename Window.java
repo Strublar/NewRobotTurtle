@@ -11,7 +11,10 @@ public class Window extends JFrame{
   // Fields
   //
 
-  
+  private String windowState;
+
+
+
   //
   // Constructors
   //
@@ -25,6 +28,15 @@ public class Window extends JFrame{
   //
   // Accessor methods
   //
+
+  public String getWindowState() {
+    return windowState;
+  }
+
+  public void setWindowState(String windowState) {
+    this.windowState = windowState;
+  }
+
 
   //
   // Other methods
