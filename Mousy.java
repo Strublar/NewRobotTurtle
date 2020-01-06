@@ -11,12 +11,14 @@ public class Mousy implements MouseListener{
   //
   // Fields
   //
-
+  private Window window;
   
   //
   // Constructors
   //
-  public Mousy () { };
+  public Mousy (Window newWindow) {
+    this.window = newWindow;
+  };
   
   //
   // Methods
@@ -27,6 +29,19 @@ public class Mousy implements MouseListener{
      */
     public void mouseClicked(MouseEvent e){
         //System.out.println("mouse clicked at x:"+e.getX()+" y:"+e.getY());
+    String state = this.window.getWindowState();
+    if(state.equals("Menu"))
+    {
+      //Faire les tests relatifs aux menus
+    }
+    else if(state.equals("Choice"))
+    {
+      //Faire les tests relatifs au choix de l'action du tour du joueur
+    }
+    else if(state.equals("Turn"))
+    {
+      //Faire les tests relatifs au tour du jeu (choisir carte/clic sur le terrain
+    }
     }
   
     /**
