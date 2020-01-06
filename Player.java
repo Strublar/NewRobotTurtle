@@ -71,127 +71,58 @@ public class Player {
     this.playerID = playerID;
   }
 
-  /**
-   * Set the value of nbStoneWall
-   * @param newVar the new value of nbStoneWall
-   */
-  private void setNbStoneWall (int newVar) {
-    nbStoneWall = newVar;
-  }
-
-  /**
-   * Get the value of nbStoneWall
-   * @return the value of nbStoneWall
-   */
-  private int getNbStoneWall () {
-    return nbStoneWall;
-  }
-
-  /**
-   * Set the value of nbIceWall
-   * @param newVar the new value of nbIceWall
-   */
-  private void setNbIceWall (int newVar) {
-    nbIceWall = newVar;
-  }
-
-  /**
-   * Get the value of nbIceWall
-   * @return the value of nbIceWall
-   */
-  private int getNbIceWall () {
+  public int getNbIceWall() {
     return nbIceWall;
   }
 
-  /**
-   * Set the value of deck
-   * liste de char
-   * @param newVar the new value of deck
-   */
-  private void setDeck (ArrayList newVar) {
-    deck = newVar;
+  public void setNbIceWall(int nbIceWall) {
+    this.nbIceWall = nbIceWall;
   }
 
-  /**
-   * Get the value of deck
-   * liste de char
-   * @return the value of deck
-   */
-  private ArrayList getDeck () {
+  public int getNbStoneWall() {
+    return nbStoneWall;
+  }
+
+  public void setNbStoneWall(int nbStoneWall) {
+    this.nbStoneWall = nbStoneWall;
+  }
+
+  public ArrayList getDeck() {
     return deck;
   }
 
-  /**
-   * Set the value of hand
-   * liste de char
-   * @param newVar the new value of hand
-   */
-  private void setHand (ArrayList newVar) {
-    hand = newVar;
+  public void setDeck(ArrayList deck) {
+    this.deck = deck;
   }
 
-  /**
-   * Get the value of hand
-   * liste de char
-   * @return the value of hand
-   */
-  private ArrayList getHand () {
+  public ArrayList getHand() {
     return hand;
   }
 
-  /**
-   * Set the value of graveYard
-   * lsite de char
-   * @param newVar the new value of graveYard
-   */
-  private void setGraveyard (ArrayList newVar) {
-    graveyard = newVar;
+  public void setHand(ArrayList hand) {
+    this.hand = hand;
   }
 
-  /**
-   * Get the value of graveYard
-   * lsite de char
-   * @return the value of graveYard
-   */
-  private ArrayList getGraveYard () {
-    return graveyard;
+  public void setGraveyard(ArrayList graveyard) {
+    this.graveyard = graveyard;
   }
 
-  /**
-   * Set the value of program
-   * ArrayDeque de char
-   * @param newVar the new value of program
-   */
-  private void setProgram (ArrayList newVar) {
-    program = newVar;
-  }
-
-  /**
-   * Get the value of program
-   * ArrayDeque de char
-   * @return the value of program
-   */
-  private ArrayList getProgram () {
+  public ArrayList getProgram() {
     return program;
   }
 
-  /**
-   * Set the value of turtle
-   * @param newVar the new value of turtle
-   */
-  private void setTurtle (Turtle newVar) {
-    turtle = newVar;
+  public void setProgram(ArrayList program) {
+    this.program = program;
   }
 
-  /**
-   * Get the value of turtle
-   * @return the value of turtle
-   */
-  private Turtle getTurtle () {
+  public Turtle getTurtle() {
     return turtle;
   }
 
-  //
+  public void setTurtle(Turtle turtle) {
+    this.turtle = turtle;
+  }
+//
   // Other methods
   //
 

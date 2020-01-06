@@ -28,21 +28,14 @@ public class Card {
   // Accessor methods
   //
 
-  /**
-   * Set the value of maxNumber
-   * @param newVar the new value of maxNumber
-   */
-  private void setMaxNumber (int newVar) {
-    maxNumber = newVar;
-  }
-
-  /**
-   * Get the value of maxNumber
-   * @return the value of maxNumber
-   */
-  private int getMaxNumber () {
+  public int getMaxNumber() {
     return maxNumber;
   }
+
+  public void setMaxNumber(int maxNumber) {
+    this.maxNumber = maxNumber;
+  }
+
 
   //
   // Other methods

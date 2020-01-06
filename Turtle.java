@@ -29,85 +29,46 @@ public class Turtle {
   // Accessor methods
   //
 
-  /**
-   * Set the value of spawnX
-   * @param newVar the new value of spawnX
-   */
-  private void setSpawnX (int newVar) {
-    spawnX = newVar;
-  }
-
-  /**
-   * Get the value of spawnX
-   * @return the value of spawnX
-   */
-  private int getSpawnX () {
+  public int getSpawnX() {
     return spawnX;
   }
 
-  /**
-   * Set the value of spawnY
-   * @param newVar the new value of spawnY
-   */
-  private void setSpawnY (int newVar) {
-    spawnY = newVar;
+  public void setSpawnX(int spawnX) {
+    this.spawnX = spawnX;
   }
 
-  /**
-   * Get the value of spawnY
-   * @return the value of spawnY
-   */
-  private int getSpawnY () {
+  public int getSpawnY() {
     return spawnY;
   }
 
-  /**
-   * Set the value of positionX
-   * @param newVar the new value of positionX
-   */
-  private void setPositionX (int newVar) {
-    positionX = newVar;
+  public void setSpawnY(int spawnY) {
+    this.spawnY = spawnY;
   }
 
-  /**
-   * Get the value of positionX
-   * @return the value of positionX
-   */
-  private int getPositionX () {
+  public int getPositionX() {
     return positionX;
   }
 
-  /**
-   * Set the value of positionY
-   * @param newVar the new value of positionY
-   */
-  private void setPositionY (int newVar) {
-    positionY = newVar;
+  public void setPositionX(int positionX) {
+    this.positionX = positionX;
   }
 
-  /**
-   * Get the value of positionY
-   * @return the value of positionY
-   */
-  private int getPositionY () {
+  public int getPositionY() {
     return positionY;
   }
 
-  /**
-   * Set the value of direction
-   * @param newVar the new value of direction
-   */
-  private void setDirection (char newVar) {
-    direction = newVar;
+  public void setPositionY(int positionY) {
+    this.positionY = positionY;
   }
 
-  /**
-   * Get the value of direction
-   * @return the value of direction
-   */
-  private char getDirection () {
+  public char getDirection() {
     return direction;
   }
+
+  public void setDirection(char direction) {
+    this.direction = direction;
+  }
+
 
   //
   // Other methods
