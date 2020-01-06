@@ -33,6 +33,7 @@ public class Player {
   private Turtle turtle;
 
   private int playerID;
+  private String playerState;
 
   //
   // Constructors
@@ -48,6 +49,14 @@ public class Player {
   // Accessor methods
   //
 
+
+  public String getPlayerState() {
+    return playerState;
+  }
+
+  public void setPlayerState(String playerState) {
+    this.playerState = playerState;
+  }
 
   public ArrayList getGraveyard() {
     return graveyard;
@@ -264,6 +273,7 @@ public class Player {
   {
     //TODO ajout d'une carte
     //addToProgram(Card chooseCard());
+    this.playerState = "AddCard";
   }
 
 

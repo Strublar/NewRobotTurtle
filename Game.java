@@ -12,13 +12,7 @@ public class Game {
 
   private int currentPlayer;
 
-    public int getCurrentPlayer() {
-        return currentPlayer;
-    }
 
-    public void setCurrentPlayer(int currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
 
     /**
    * tableau de joueurs
@@ -52,25 +46,24 @@ public class Game {
   // Accessor methodss
   //
 
-  /**
-   * Set the value of joueurEnCours
-   * @param newVar the new value of joueurEnCours
-   */
-  private void setJoueurEnCours (int newVar) {
-    currentPlayer = newVar;
-  }
 
-  /**
-   * Get the value of joueurEnCours
-   * @return the value of joueurEnCours
-   */
-  private int getJoueurEnCours () {
-    return currentPlayer;
-  }
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
 
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 
+    public Player[] getPlayers() {
+        return players;
+    }
 
-  //
+    public void setPlayers(Player[] players) {
+        this.players = players;
+    }
+
+    //
   // Other methods
   //
 
