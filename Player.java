@@ -17,28 +17,39 @@ public class Player {
   /**
    * liste de char
    */
-  private ArrayList deck;
+  private ArrayList<Card> deck;
   /**
    * liste de char
    */
-  private ArrayList hand;
+  private Card[] hand;
   /**
    * lsite de char
    */
-  private ArrayList graveyard;
+  private ArrayList<Card> graveyard;
   /**
    * ArrayDeque de char
    */
-  private ArrayList program;
+  private ArrayList<Card> program;
   private Turtle turtle;
 
   private int playerID;
   private String playerState;
-
+  private Card selectedCard;
   //
   // Constructors
   //
-  public Player () { };
+  public Player () {
+  nbStoneWall=5;
+  nbIceWall=2;
+  deck=new ArrayList();
+  graveyard=new ArrayList();
+  hand = new Card[5];
+  program = new ArrayList();
+  playerID = 1;
+  playerState = "gné";
+  selectedCard = null;
+  
+  };
   
   //
   // Methods
@@ -50,6 +61,14 @@ public class Player {
   //
 
 
+  public Card getSelectedCard() {
+    return selectedCard;
+  }
+
+  public void setSelectedCard(Card selectedCard) {
+    this.selectedCard = selectedCard;
+  }
+
   public String getPlayerState() {
     return playerState;
   }
@@ -58,7 +77,7 @@ public class Player {
     this.playerState = playerState;
   }
 
-  public ArrayList getGraveyard() {
+  public ArrayList<Card> getGraveyard() {
     return graveyard;
   }
 
@@ -87,7 +106,7 @@ public class Player {
     this.nbStoneWall = nbStoneWall;
   }
 
-  public ArrayList getDeck() {
+  public ArrayList<Card> getDeck() {
     return deck;
   }
 
@@ -95,11 +114,11 @@ public class Player {
     this.deck = deck;
   }
 
-  public ArrayList getHand() {
+  public Card[] getHand() {
     return hand;
   }
 
-  public void setHand(ArrayList hand) {
+  public void setHand(Card[] hand) {
     this.hand = hand;
   }
 
@@ -107,7 +126,7 @@ public class Player {
     this.graveyard = graveyard;
   }
 
-  public ArrayList getProgram() {
+  public ArrayList<Card> getProgram() {
     return program;
   }
 
@@ -203,7 +222,6 @@ public class Player {
   private void addCard()
   {
     //TODO ajout d'une carte
-    //addToProgram(Card chooseCard());
     this.playerState = "AddCard";
   }
 
@@ -235,21 +253,20 @@ public class Player {
 
   /**
    */
-  private void chooseCard()
+  public void chooseCard(int select)
   {
-    //TODO Choix de la carte et vérification si elle est dans la main
     System.out.println("Carte choisis");
-   // return (new LeftCard());
+    this.selectedCard = this.hand[select];
   }
 
 
   /**
-   * @param        card
    */
-  private void addToProgram(Card card)
+  public void addToProgram()
   {
-    //TODO ajouter une carte au programme
+    //TODO ajouter une carte au programme et la retirer de la main
     System.out.println("Carte ajoutée");
+
   }
 
 

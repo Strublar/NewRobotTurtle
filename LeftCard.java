@@ -8,14 +8,17 @@ public class LeftCard extends Card {
   //
   // Fields
   //
-
-
+    private String cardName;
+  
   //
   // Constructors
   //
   public LeftCard (){
-    //TODO faire tourner la tortue a gauche
-  };
+    cardName = "leftCard";
+  }
 
 
+  public String getCardName(){
+      return this.cardName;
+  }
 }

@@ -8,13 +8,17 @@ public class RightCard extends Card {
   //
   // Fields
   //
+   private String cardName;
 
   
   //
   // Constructors
   //
   public RightCard (){
-    //TODO faire tourner la tortue a droite
+    cardName = "rightCard";
   };
 
+  public String getCardName(){
+      return this.cardName;
+  }
 }

@@ -11,16 +11,7 @@ public class Game {
   //
 
   private int currentPlayer;
-
-
-
-    /**
-   * tableau de joueurs
-   */
   private Player[] players;
-  /**
-   * matrice de char
-   */
   private char[][] board;
   
   //
@@ -45,7 +36,9 @@ public class Game {
   //
   // Accessor methodss
   //
-
+  public char[][] getBoard(){
+      return this.board;
+  }
 
     public int getCurrentPlayer() {
         return currentPlayer;

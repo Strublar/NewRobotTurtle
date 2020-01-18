@@ -10,13 +10,17 @@ public class Card {
   // Fields
   //
 
-  private int maxNumber;
+  private String cardName;
   
   //
   // Constructors
   //
-  public Card() {
-
+  
+  public Card(){
+      cardName = "default";
+  }
+  public Card(int maxNumber) {
+    cardName = "default";
   }
 
   //
@@ -28,15 +32,11 @@ public class Card {
   // Accessor methods
   //
 
-  public int getMaxNumber() {
-    return maxNumber;
+
+  public String getCardName(){
+      return this.cardName;
   }
-
-  public void setMaxNumber(int maxNumber) {
-    this.maxNumber = maxNumber;
-  }
-
-
+  
   //
   // Other methods
   //
