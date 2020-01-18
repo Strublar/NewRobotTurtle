@@ -41,9 +41,18 @@ public class Mousy implements MouseListener{
     public void mousePressed(MouseEvent e){
         //System.out.println("mouse pressed at x:"+e.getX()+" y:"+e.getY());
       String state = this.window.getWindowState();
+
       if(state.equals("Menu"))
       {
-        //Faire les tests relatifs aux menus
+          if (e.getX() >= 820+12) && (e.getX() <= 820+12+95) && (e.getY() >= 12) && (e.getY() <= 12+95) {
+          Window.setWindowState(String "ChooseTile");
+          char wallType='S';
+          Player.placeWall(wallType);
+        } else if (e.getX() <= 820+12+95+4+95+4+20) && (e.getX() >= 820+12+95+4+95+4+20+95) && (e.getY() <= 12) && (e.getY() >= 12+95)  {
+          Window.setWindowState(String "ChooseTile");
+          char wallType='I';
+          Player.placeWall(wallType);
+        }
       }
       else if(state.equals("Choice"))
       {
