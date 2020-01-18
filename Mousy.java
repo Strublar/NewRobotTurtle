@@ -31,7 +31,6 @@ public class Mousy implements MouseListener{
      */
     public void mouseClicked(MouseEvent e){
         //System.out.println("mouse clicked at x:"+e.getX()+" y:"+e.getY());
-<<<<<<< HEAD
     String state = this.window.getWindowState();
     if(state.equals("Menu"))
     {
@@ -106,8 +105,6 @@ public class Mousy implements MouseListener{
         return (x,y);
       }
     }
-=======
->>>>>>> d7ba0b5a1a86f1e584b02c91b6d0b9b478e792dd
 
     }
 
@@ -156,8 +153,8 @@ public class Mousy implements MouseListener{
         }
       }
     }
-    
-    
+
+
     /**
      * Invoked when a mouse button has been released on a component.
      * @param e the event to be processed
@@ -181,9 +178,9 @@ public class Mousy implements MouseListener{
     public void mouseExited(MouseEvent e){
         //System.out.println("mouse exited");
     }
-  
+
   //
   // Other methods
   //
-  
+
 }

@@ -1,5 +1,5 @@
 package NewRobotTurtle;
-
+import org.xguzm.pathfinding.*;
 
 /**
  * Class Game
@@ -111,13 +111,32 @@ public class Game {
   }
 
 
-  /**
-   * @return       boolean
-   */
-  private boolean testVictory()
-  {
+    /**
+    * @return       boolean
+    */
+    private boolean testVictory()
+    {
       return false;
-  }
+    }
 
+    public void wallTest(int playerNumber)
+    {
+        int turtleX = player.getturtle.getpositionX;
+        int turtleY = player.getturtle.getpositionY;
+        int joyeauX = 5
+        int joyeauy = 5
+        //these should be stored as [x][y]
+        GridCell[][] cells = this.board;
 
+        //create your cells with whatever data you need
+        cells = createCells();
+
+        //create a navigation grid with the cells you just created
+        NavigationGrid<GridCell> navGrid = new NavigationGrid(cells);
+
+         //create a finder
+        AStarGridFinder<GridCell> finder = new AStarGridFinder(GridCell.class);
+
+        List<GridCell> pathToEnd = finder.findPath(getpositionX, getpositionY, 4, 3, navGrid);
+    }
 }
