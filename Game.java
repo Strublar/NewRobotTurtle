@@ -147,20 +147,21 @@ public class Game {
 
 
 
-    public boolean wallTest(int playerNumber, int xWall, int yWall) {
+    public boolean wallTest(int xWall, int yWall) {
         this.map = this.board;
 
+        //TODO: faire une boucle pour tout les joueurs
 
-        int turtleX = 0;
-        int turtleY = 0;
+        int turtleX = Player.getturtle().positionX;
+        int turtleY = Player.getturtle().positionY;
         //On commence par tester si l'emplacement est libre
         if (this.board[xWall][yWall] != ' ') {
             return false;
         }
         this.map[yWall][xWall] = 'w';
 
-        int xMax = this.board[0].length;
-        int yMax = this.board.length;
+        int xMax = this.board[0].length-1;
+        int yMax = this.board.length-1;
 
         int x = turtleX;
         int y = turtleY;
@@ -170,15 +171,15 @@ public class Game {
         int nV = 0;
         this.map[turtleY][turtleX] = 'v';
         while (true) {
-            for (int k = 0; k < yMax; k++) {
+            for (int k = 0; k <= yMax; k++) {
                 System.out.print(this.map[k]);
                 System.out.print("\n");
             }
 
             int nVBefore = nV;
 
-            for (int i = 0; i < yMax; i++) {
-                for (int j = 0; j < xMax; j++) {
+            for (int i = 0; i <= yMax; i++) {
+                for (int j = 0; j <= xMax; j++) {
                     if (this.map[i][j] == 'v') {
                         int[] resMaj = majAdj(j, i);
                         if (resMaj[0] == 1) {
@@ -202,8 +203,7 @@ public class Game {
     private int[] majAdj(int x, int y) {
         int xMax = this.board[0].length-1;
         int yMax = this.board.length-1;
-        int gemmeX = 5;
-        int gemmeY = 4;
+
         int nV = 0;
         int n = 0;
         int m = 0;
