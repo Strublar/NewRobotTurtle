@@ -33,20 +33,20 @@ public class World extends JPanel{
     public World(Game game){
         this.game=game;
         try {
-            gemImage = ImageIO.read(new File("gem.png"));
-            boardImage = ImageIO.read(new File("board.png"));
-            cardBackImage = ImageIO.read(new File("cardBack.png"));
-            cardForwardImage = ImageIO.read(new File("cardForward.png"));
-            cardRightImage = ImageIO.read(new File("cardRight.png"));
-            cardLeftImage = ImageIO.read(new File("cardLeft.png"));
-            cardShootImage = ImageIO.read(new File("cardShoot.png"));
+            gemImage = ImageIO.read(new File("images/gem.png"));
+            boardImage = ImageIO.read(new File("images/board.png"));
+            cardBackImage = ImageIO.read(new File("images/cardBack.png"));
+            cardForwardImage = ImageIO.read(new File("images/cardForward.png"));
+            cardRightImage = ImageIO.read(new File("images/cardRight.png"));
+            cardLeftImage = ImageIO.read(new File("images/cardLeft.png"));
+            cardShootImage = ImageIO.read(new File("images/cardShoot.png"));
             
-            iceWallImage = ImageIO.read(new File("iceWall.png"));
-            stoneWallImage = ImageIO.read(new File("stoneWall.png"));
-            turtleBeepImage = ImageIO.read(new File("turtleBeep.png"));
-            turtleDotImage = ImageIO.read(new File("turtleDot.png"));
-            turtlePangleImage = ImageIO.read(new File("turtlePangle.png"));
-            turtlePiImage = ImageIO.read(new File("turtlePi.png"));
+            iceWallImage = ImageIO.read(new File("images/iceWall.png"));
+            stoneWallImage = ImageIO.read(new File("images/stoneWall.png"));
+            turtleBeepImage = ImageIO.read(new File("images/turtleBeep.png"));
+            turtleDotImage = ImageIO.read(new File("images/turtleDot.png"));
+            turtlePangleImage = ImageIO.read(new File("images/turtlePangle.png"));
+            turtlePiImage = ImageIO.read(new File("images/turtlePi.png"));
         } catch (IOException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
         }
