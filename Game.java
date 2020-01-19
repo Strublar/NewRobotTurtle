@@ -1,6 +1,5 @@
 package NewRobotTurtle;
 
-
 /**
  * Class Game
  */
@@ -11,7 +10,26 @@ public class Game {
   //
 
   private int currentPlayer;
+
   private Player[] players;
+
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    /**
+   * tableau de joueurs
+   */
+  private Player[] players;
+  /**
+   * matrice de char
+   */
+
   private char[][] board;
   
   //
@@ -36,6 +54,7 @@ public class Game {
   //
   // Accessor methodss
   //
+
   public char[][] getBoard(){
       return this.board;
   }
@@ -57,6 +76,26 @@ public class Game {
     }
 
     //
+
+  /**
+   * Set the value of joueurEnCours
+   * @param newVar the new value of joueurEnCours
+   */
+  private void setJoueurEnCours (int newVar) {
+    currentPlayer = newVar;
+  }
+
+  /**
+   * Get the value of joueurEnCours
+   * @return the value of joueurEnCours
+   */
+  private int getJoueurEnCours () {
+    return currentPlayer;
+  }
+
+
+
+  //
   // Other methods
   //
 
@@ -97,6 +136,7 @@ public class Game {
   }
 
 
+
   /**
    * @return       boolean
    */
@@ -106,4 +146,26 @@ public class Game {
   }
 
 
+
+
+    public void wallTest(int playerNumber)
+    {
+        int turtleX = player.getturtle.getpositionX;
+        int turtleY = player.getturtle.getpositionY;
+        int joyeauX = 5
+        int joyeauy = 5
+        //these should be stored as [x][y]
+        GridCell[][] cells = this.board;
+
+        //create your cells with whatever data you need
+        cells = createCells();
+
+        //create a navigation grid with the cells you just created
+        NavigationGrid<GridCell> navGrid = new NavigationGrid(cells);
+
+         //create a finder
+        AStarGridFinder<GridCell> finder = new AStarGridFinder(GridCell.class);
+
+        List<GridCell> pathToEnd = finder.findPath(getpositionX, getpositionY, 4, 3, navGrid);
+    }
 }
