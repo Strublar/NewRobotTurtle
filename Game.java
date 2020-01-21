@@ -35,18 +35,29 @@ public class Game {
     //
     // Constructors
     //
-    public Game() {
-        board = new char[8][8];
-        players = new Player[2];
-        //TODO modifier ce qu'il y a en dessous
-        players[0] = new Player();
-        players[1] = new Player();
-        players[0].setPlayerID(1);
-        players[1].setPlayerID(2);
-        currentPlayer = -1;
-    }
+    public Game () {
+	  board = new char[8][8];
+         for(int i=0;i<8;i++){
+             for(int j=0;j<8;j++){
+                 board[i][j]=' ';
+             }
+         }
+          
+         board[2][3]='I';
+         board[6][5]='S';
+         board[3][7]='G';
+         
+          
+	  players = new Player[2];
+	  //TODO modifier ce qu'il y a en dessous
+	  players[0] = new Player();
+	  players[1] = new Player();
+	  players[0].setPlayerID(1);
+	  players[1].setPlayerID(2);
+	  currentPlayer = -1;
+  }
 
-    ;
+    
 
     //
     // Methods
