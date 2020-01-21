@@ -10,12 +10,12 @@ public class Card {
   // Fields
   //
 
-  private String cardName;
+  protected String cardName;
   
   //
   // Constructors
   //
-  
+
   public Card(){
       cardName = "default";
   }
@@ -36,17 +36,16 @@ public class Card {
   public String getCardName(){
       return this.cardName;
   }
-  
+
+
   //
   // Other methods
   //
 
   /**
    */
-  public void effect()
+  public void effect(Turtle turtle)
   {
-    //TODO ?
-    //FowardCard();
   }
 
 

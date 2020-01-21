@@ -1,4 +1,4 @@
-package NewRobotTurle;
+package NewRobotTurtle;
 
 import javax.swing.JFrame;
 
@@ -12,11 +12,11 @@ public class Window extends JFrame{
   //
   World world;
   Mousy mousy;
-  
+
   //
   // Constructors
   //
-  public Window () {
+  public Window (String newWindowState, Game game) {
         this.setTitle("jeu");
         //this.setSize(820+1100,820);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -24,9 +24,9 @@ public class Window extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         
-        world = new World();
+        world = new World(game);
         this.setContentPane(world);
-        mousy = new Mousy();
+        mousy = new Mousy(this,game);
         this.addMouseListener(mousy);
         
         //this.setUndecorated(true);
@@ -42,7 +42,25 @@ public class Window extends JFrame{
   // Accessor methods
   //
 
-  //
+    public World getWorld() {
+        return world;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public Mousy getMousy() {
+        return mousy;
+    }
+
+    public void setMousy(Mousy mousy) {
+        this.mousy = mousy;
+    }
+
+
+
+    //
   // Other methods
   //
 

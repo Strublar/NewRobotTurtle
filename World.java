@@ -136,22 +136,21 @@ public class World extends JPanel{
         g.fillRect(820+12+(135+4)*4, 146+200+51+200+51, 135, 200);
         
         drawHandAndBench(g,current);
-        
+        super.repaint();
         
     }
     private void drawBoard(Graphics g){
-        char[][] board = game.getBoard();
-        //gné
+
         
     }
     private void drawHandAndBench(Graphics g,Player current){
         //dessin des cartes de la main
-        for(int i=0;i<current.getHand().length;i++){
-            if(getCardImage(current.getHand()[i])!=null)g.drawImage(this.getCardImage(current.getHand()[i]), 820+12+(135+4)*i, 146+200+51, this);
+        for(int i=0;i<current.getHand().size();i++){
+            if(getCardImage(current.getHand().get(i))!=null)g.drawImage(this.getCardImage(current.getHand().get(i)), 820+12+(135+4)*i, 146+200+51, this);
         }
         //dessin des cartes sur le banc
-        for(int i=0;i<current.getProgram().size();i++){
-            g.drawImage(this.getCardImage(current.getProgram().get(i)), 820+12+(135+4)*i, 146+200+51+200+51, this);
+        for(int i=0;i<current.getBench().size();i++){
+            g.drawImage(this.getCardImage(current.getBench().get(i)), 820+12+(135+4)*i, 146+200+51+200+51, this);
         }
     }
     

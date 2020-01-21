@@ -9,29 +9,20 @@ public class Game {
     // Fields
     //
 
-    private int currentPlayer;
+  private int currentPlayer;
+  private Player[] players;
+  private char[][] board;
+  private String gameState;
+  private Window window;
 
-    private Player[] players;
 
+    //
 
-    public int getCurrentPlayer() {
-        return currentPlayer;
-    }
+  
+  //
+  // Methods
+  //
 
-    public void setCurrentPlayer(int currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
-    /**
-     * tableau de joueurs
-     */
-    private Player[] players;
-    /**
-     * matrice de char
-     */
-
-    private char[][] board;
-    private char[][] map;
     //
     // Constructors
     //
@@ -39,8 +30,8 @@ public class Game {
         board = new char[8][8];
         players = new Player[2];
         //TODO modifier ce qu'il y a en dessous
-        players[0] = new Player();
-        players[1] = new Player();
+        players[0] = new Player(this);
+        players[1] = new Player(this);
         players[0].setPlayerID(1);
         players[1].setPlayerID(2);
         currentPlayer = -1;
@@ -53,12 +44,23 @@ public class Game {
     //
 
 
-    //
-    // Accessor methodss
-    //
+  //
+  // Accessor methodss
+  //
+    public Window getWindow() {
+      return window;
+    }
+
+    public void setWindow(Window window) {
+        this.window = window;
+    }
 
     public char[][] getBoard() {
-        return this.board;
+        return board;
+    }
+
+    public void setBoard(char[][] board) {
+        this.board = board;
     }
 
     public int getCurrentPlayer() {
@@ -77,26 +79,13 @@ public class Game {
         this.players = players;
     }
 
-    //
-
-    /**
-     * Set the value of joueurEnCours
-     *
-     * @param newVar the new value of joueurEnCours
-     */
-    private void setJoueurEnCours(int newVar) {
-        currentPlayer = newVar;
+    public String getGameState() {
+        return gameState;
     }
 
-    /**
-     * Get the value of joueurEnCours
-     *
-     * @return the value of joueurEnCours
-     */
-    private int getJoueurEnCours() {
-        return currentPlayer;
+    public void setGameState(String gameState) {
+        this.gameState = gameState;
     }
-
 
     //
     // Other methods
@@ -127,13 +116,16 @@ public class Game {
     /**
      *
      */
-    private void distributeTurn() {
-        System.out.println("On distribue le tour");
-        currentPlayer++;
-        if (currentPlayer >= players.length) {
-            currentPlayer = 0;
-        }
+    public void distributeTurn() {
 
+	System.out.println("On distribue le tour");
+	currentPlayer ++;
+	if(currentPlayer>=players.length)
+	{
+		currentPlayer = 0;
+	}
+
+	gameState = "Turn";
         players[currentPlayer].turn();
     }
 
@@ -146,7 +138,7 @@ public class Game {
     }
 
 
-
+/*
     public boolean wallTest(int xWall, int yWall) {
         this.map = this.board;
 
@@ -234,5 +226,5 @@ public class Game {
             }
         }
         return (new int[]{0, nV});
-    }
+    }*/
 }
