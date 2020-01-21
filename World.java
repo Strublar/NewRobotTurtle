@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package NewRobotTurtle;
 
 import java.awt.Color;
@@ -11,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -24,9 +22,10 @@ public class World extends JPanel{
     
     BufferedImage boardImage;
     BufferedImage turtleBeepImage, turtleDotImage, turtlePangleImage, turtlePiImage;
-    BufferedImage iceWallImage, stoneWallImage, gemImage;
+    ArrayList<BufferedImage> turtleImages;
+    BufferedImage iceWallImage,iceWallMeltedImage, stoneWallImage, gemImage;
     BufferedImage cardBackImage, cardLeftImage, cardForwardImage, cardRightImage, cardShootImage;
-    
+    ArrayList<Color> colors;
     Game game;
     
     
@@ -42,35 +41,58 @@ public class World extends JPanel{
             cardShootImage = ImageIO.read(new File("images/cardShoot.png"));
             
             iceWallImage = ImageIO.read(new File("images/iceWall.png"));
+            iceWallMeltedImage = ImageIO.read(new File("images/iceWallMelted.png"));
             stoneWallImage = ImageIO.read(new File("images/stoneWall.png"));
             turtleBeepImage = ImageIO.read(new File("images/turtleBeep.png"));
             turtleDotImage = ImageIO.read(new File("images/turtleDot.png"));
             turtlePangleImage = ImageIO.read(new File("images/turtlePangle.png"));
             turtlePiImage = ImageIO.read(new File("images/turtlePi.png"));
+            
+            turtleImages = new ArrayList();
+            colors = new ArrayList();
+            turtleImages.add(turtleBeepImage);
+            colors.add(new Color(47,84,151)); //blue
+            turtleImages.add(turtlePangleImage);
+            colors.add(new Color(106,101,48)); //green
+            turtleImages.add(turtleDotImage);
+            colors.add(new Color(187,67,151)); //pink
+            turtleImages.add(turtlePiImage);
+            colors.add(new Color(201,51,44)); //red
+            
+            /* test pour positionner les tortues
+            game.getPlayers()[0].getTurtle().setPositionX(0);
+            game.getPlayers()[0].getTurtle().setPositionY(2);
+            game.getPlayers()[1].getTurtle().setPositionX(3);
+            game.getPlayers()[1].getTurtle().setPositionY(1);
+            */
+            
+            assignTurtlesAndColors();
+            
         } catch (IOException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
-    
+    private void assignTurtlesAndColors(){
+        for(Player player : game.getPlayers()){
+            int randomNum = ThreadLocalRandom.current().nextInt(0, this.turtleImages.size());
+            player.getTurtle().setTurtleImage(turtleImages.get(randomNum));
+            turtleImages.remove(randomNum);
+            player.getTurtle().setColor(colors.get(randomNum));
+            colors.remove(randomNum);
+        }
+    }
     @Override
     public void paintComponent(Graphics g){
         Player current = game.getPlayers()[game.getCurrentPlayer()];
         /*
-        à récup :
-        deck pioche
-        deck défausse
-        murs
-        nom
-        hand
-        bench
-        
-        */
         current.getDeck();
         current.getGraveyard();
         current.getHand();
         current.getNbIceWall();
         current.getNbStoneWall();
+        
+        */
         
         //plateau de jeu
         g.setColor(Color.BLACK);
@@ -91,7 +113,7 @@ public class World extends JPanel{
         
         drawBoard(g);
         
-        
+        drawTurtle(g);
         
         
         
@@ -137,12 +159,45 @@ public class World extends JPanel{
         
         drawHandAndBench(g,current);
         
+        super.repaint();
         
     }
     private void drawBoard(Graphics g){
+        int x, y;
         char[][] board = game.getBoard();
-        //gné
-        
+        for(int i =0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                
+                switch(board[i][j]){
+                    case 'I': //icewall
+                        x=17+(95+4)*i;
+                        y=17+(95+4)*j;
+                        g.drawImage(this.iceWallImage, x, y, this);
+                        break;
+                    case 'S': //stonewall
+                        x=17+(95+4)*i;
+                        y=17+(95+4)*j;
+                        g.drawImage(this.stoneWallImage, x, y, this);
+                        break;
+                    case 'M': //melted icewall
+                        x=17+(95+4)*i;
+                        y=17+(95+4)*j;
+                        g.drawImage(this.iceWallMeltedImage, x, y, this);
+                        break;
+                    case 'G': //gem
+                        x=17+(95+4)*i;
+                        y=17+(95+4)*j;
+                        g.drawImage(this.gemImage, x, y, this);
+                        break;
+                }
+            }
+        }
+    }
+    private void drawTurtle(Graphics g){
+        for(Player player : game.getPlayers()){
+            Turtle turtle = player.getTurtle();
+            g.drawImage(turtle.getTurtleImage(), 17+turtle.getPositionX()*(95+4), 17+turtle.getPositionY()*(95+4), this);
+        }
     }
     private void drawHandAndBench(Graphics g,Player current){
         //dessin des cartes de la main

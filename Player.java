@@ -17,7 +17,6 @@ public class Player {
   /**
    * liste de char
    */
-
   private ArrayList<Card> deck;
   /**
    * liste de char
@@ -49,9 +48,9 @@ public class Player {
   playerID = 1;
   playerState = "gné";
   selectedCard = null;
-  
+  this.turtle=new Turtle();
   };
-
+  
   //
   // Methods
   //
@@ -60,7 +59,6 @@ public class Player {
   //
   // Accessor methods
   //
-
 
 
   public Card getSelectedCard() {
@@ -80,7 +78,6 @@ public class Player {
   }
 
   public ArrayList<Card> getGraveyard() {
-
     return graveyard;
   }
 
@@ -92,7 +89,6 @@ public class Player {
   public void setPlayerID(int playerID) {
     this.playerID = playerID;
   }
-
 
   public int getNbIceWall() {
     return nbIceWall;
@@ -145,7 +141,7 @@ public class Player {
   public void setTurtle(Turtle turtle) {
     this.turtle = turtle;
   }
-  //
+//
   // Other methods
   //
 
@@ -189,9 +185,6 @@ public class Player {
 
   /**
    */
-
-/*
-
   private void choiceTurn()
   {
 	  System.out.println("Le joueur "+this.playerID+" fais sont choix");
@@ -211,17 +204,16 @@ public class Player {
 	    	 break;
 	  }
   }
+
+
+  /**
    */
-
-
-
-  private void placeWall(int[] coord,char wallType) {
-    if game.wallTest(coord) {
-      game.board[coord] = wallType;
-      System.out.println("Mur placé");
-    } else{
-      System.out.println("Emplacement non valide");
-    }
+  private void placeWall()
+  {
+    chooseWall();
+    chooseTile();
+    System.out.println("Mur placé");
+    //TODO placer le mur sur la carte
   }
 
 
@@ -230,11 +222,7 @@ public class Player {
   private void addCard()
   {
     //TODO ajout d'une carte
-
     this.playerState = "AddCard";
-
-    //addToProgram(Card chooseCard());
-
   }
 
 
@@ -253,53 +241,47 @@ public class Player {
   }
 
 
+  /**
+   */
+  private char chooseWall()
+  {
+    //TODO Choix du mur, et vérifier si il en reste
+    System.out.println("Type de mur choisis");
+    return ('I');
+  }
 
 
-
+  /**
+   */
   public void chooseCard(int select)
   {
     System.out.println("Carte choisis");
     this.selectedCard = this.hand[select];
   }
- /* private char chooseWall()
-  {
-    //TODO Choix du mur, et vérifier si il en reste
-    if (this.nbStoneWall == 0) && (this.nbIceWall == 0) {
-      System.out.println("Plus aucun mur disponible!");
-  } else {
-    Window.setWindowState(String "WallChoice");
-    char choix = mouseClicked();
-    if (choix == "S") {
-      this.nbStoneWall--;
-      return choix;
-    } else if (choix = "I"){
-      this.nbIceWall--;
-      return choix;
-    } else if (choix = "E"){
-      choiceTurn();
-    }
-
-  
-*/
 
 
-
+  /**
+   */
   public void addToProgram()
   {
     //TODO ajouter une carte au programme et la retirer de la main
     System.out.println("Carte ajoutée");
+
   }
 
 
-
+  /**
+   */
   private void shuffle()
   {
   }
 
 
+  /**
+   */
   private void fullHand()
   {
   }
+
+
 }
-
-

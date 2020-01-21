@@ -1,5 +1,9 @@
 package NewRobotTurtle;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 /**
  * Class Turtle
  */
@@ -14,6 +18,8 @@ public class Turtle {
   private int positionX;
   private int positionY;
   private char direction;
+  private BufferedImage turtleImage;
+  private Color color;
   
   //
   // Constructors
@@ -68,7 +74,18 @@ public class Turtle {
   public void setDirection(char direction) {
     this.direction = direction;
   }
-
+public void setTurtleImage(BufferedImage turtleImage){
+    this.turtleImage=turtleImage;
+}
+public BufferedImage getTurtleImage(){
+    return this.turtleImage;
+}
+public void setColor(Color color){
+    this.color=color;
+}
+public Color getColor(){
+    return this.color;
+}
 
   //
   // Other methods
@@ -80,13 +97,40 @@ public class Turtle {
   {
       System.out.println("turtle forward !");
   }
+  
+    /**
+     * fonction pour tourner l'image lorsque la tortue tourne
+     * @param img
+     * @param angle
+     * @return 
+     */
+    public  BufferedImage rotate(BufferedImage img, double angle){
+        System.out.println("rotating");
+        double sin = Math.abs(Math.sin(Math.toRadians(angle))),
+               cos = Math.abs(Math.cos(Math.toRadians(angle)));
 
+        int width = img.getWidth(null), height = img.getHeight(null);
+
+        int newWidth = (int) Math.floor(width*cos + height*sin),
+            newHeight = (int) Math.floor(height*cos + width*sin);
+
+        BufferedImage bimg = new BufferedImage(newWidth, newHeight,BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = bimg.createGraphics();
+
+        g.translate((newWidth-width)/2, (newHeight-height)/2);
+        g.rotate(Math.toRadians(angle), width/2, height/2);
+        g.drawRenderedImage(img, null);
+        g.dispose();
+
+        return bimg;
+    }
 
   /**
    */
   public void left()
   {
       System.out.println("turtle left !");
+      this.turtleImage=rotate(this.turtleImage,90);
   }
 
 
@@ -95,6 +139,7 @@ public class Turtle {
   public void right()
   {
       System.out.println("turtle right !");
+      this.turtleImage=rotate(this.turtleImage,-90);
   }
 
 
