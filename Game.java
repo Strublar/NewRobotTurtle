@@ -36,7 +36,15 @@ public class Game {
         this.gameState="Menu";
     }
 
-    
+    public void resetGame(){
+        board = new char[8][8];
+        players = new Player[1];
+        players[0] = new Player(this);
+        playerCount = 0;
+        currentPlayer=0;
+        this.gameState="Menu";
+        window.getWorld().resetWorld();
+    }
 
     //
     // Methods
@@ -100,6 +108,7 @@ public class Game {
      *
      */
     public void startGame(int playerCount) {
+        
         switch(playerCount)
         {
             case 2:

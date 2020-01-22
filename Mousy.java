@@ -200,6 +200,11 @@ public class Mousy implements MouseListener{
         }
       }
     }
+    if(state.equals("Victory")){
+        //relance
+        game.resetGame();
+        
+    }
   }
 
 

@@ -85,6 +85,50 @@ public class World extends JPanel{
             names.remove(randomNum);
         }
     }
+    public void resetWorld(){
+        
+        try {
+            gemImage = ImageIO.read(new File("images/gem.png"));
+            boardImage = ImageIO.read(new File("images/board.png"));
+            cardBackImage = ImageIO.read(new File("images/cardBack.png"));
+            cardForwardImage = ImageIO.read(new File("images/cardForward.png"));
+            cardRightImage = ImageIO.read(new File("images/cardRight.png"));
+            cardLeftImage = ImageIO.read(new File("images/cardLeft.png"));
+            cardShootImage = ImageIO.read(new File("images/cardShoot.png"));
+
+            iceWallImage = ImageIO.read(new File("images/iceWall.png"));
+            iceWallMeltedImage = ImageIO.read(new File("images/iceWallMelted.png"));
+            stoneWallImage = ImageIO.read(new File("images/stoneWall.png"));
+            turtleBeepImage = ImageIO.read(new File("images/turtleBeep.png"));
+            turtleDotImage = ImageIO.read(new File("images/turtleDot.png"));
+            turtlePangleImage = ImageIO.read(new File("images/turtlePangle.png"));
+            turtlePiImage = ImageIO.read(new File("images/turtlePi.png"));
+            
+            endFlag1 = ImageIO.read(new File("images/endFlag1.png"));
+            endFlag2 = ImageIO.read(new File("images/endFlag2.png"));
+
+            turtleImages = new ArrayList();
+            colors = new ArrayList();
+            names = new ArrayList();
+            turtleImages.add(turtleBeepImage);
+            names.add("Beep");
+            colors.add(new Color(47,84,115)); //blue
+            turtleImages.add(turtlePangleImage);
+            names.add("Pangle");
+            colors.add(new Color(106,101,48)); //green
+            turtleImages.add(turtleDotImage);
+            names.add("Dot");
+            colors.add(new Color(187,67,115)); //pink
+            turtleImages.add(turtlePiImage);
+            names.add("Pi");
+            colors.add(new Color(151,15,44)); //red
+
+
+        } catch (IOException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     @Override
     public void paintComponent(Graphics g){
         Player current = game.getPlayers()[game.getCurrentPlayer()];
