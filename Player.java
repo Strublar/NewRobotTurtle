@@ -306,7 +306,7 @@ public class Player {
       System.out.println(bench.size());
       hand.add(bench.get(select));
       bench.remove(select);
-      if (bench.size() == 0) {
+      if (bench.size() == 0 && !game.getGameState().equals("Discard")) {
         game.setGameState("Turn");
       }
     } else {
