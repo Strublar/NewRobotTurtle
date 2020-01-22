@@ -21,6 +21,7 @@ public class Turtle {
   private Game game;
   private BufferedImage turtleImage;
   private Color color;
+  private String name;
   //
   // Constructors
   //
@@ -52,6 +53,7 @@ public class Turtle {
 
   public void setTurtleImage(BufferedImage turtleImage) {
     this.turtleImage = turtleImage;
+    this.turtleImage=rotate(this.turtleImage,180);
   }
 
   public Color getColor() {
@@ -61,7 +63,15 @@ public class Turtle {
   public void setColor(Color color) {
     this.color = color;
   }
+  
+  public String getName(){
+      return name;
+  }
 
+  public void setName(String name){
+      this.name=name;
+  }
+  
   public Game getGame() {
     return game;
   }
@@ -159,7 +169,32 @@ public class Turtle {
           break;
     }
   }
+ /**
+     * fonction pour tourner l'image lorsque la tortue tourne
+     * @param img
+     * @param angle
+     * @return 
+     */
+    public  BufferedImage rotate(BufferedImage img, double angle){
+        System.out.println("rotating");
+        double sin = Math.abs(Math.sin(Math.toRadians(angle))),
+               cos = Math.abs(Math.cos(Math.toRadians(angle)));
 
+        int width = img.getWidth(null), height = img.getHeight(null);
+
+        int newWidth = (int) Math.floor(width*cos + height*sin),
+            newHeight = (int) Math.floor(height*cos + width*sin);
+
+        BufferedImage bimg = new BufferedImage(newWidth, newHeight,BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = bimg.createGraphics();
+
+        g.translate((newWidth-width)/2, (newHeight-height)/2);
+        g.rotate(Math.toRadians(angle), width/2, height/2);
+        g.drawRenderedImage(img, null);
+        g.dispose();
+
+        return bimg;
+    }
 
   /**
    */
@@ -181,7 +216,7 @@ public class Turtle {
           direction = 'S';
           break;
       }
-    turtleImage = rotate(this.turtleImage,-90);
+      this.turtleImage=rotate(this.turtleImage,-90);
   }
 
 
@@ -205,7 +240,7 @@ public class Turtle {
         direction = 'N';
         break;
     }
-    turtleImage = rotate(this.turtleImage,90);
+    this.turtleImage=rotate(this.turtleImage,90);
   }
 
 
@@ -213,188 +248,7 @@ public class Turtle {
    */
   public void shoot()
   {
-    System.out.println("Shoot");
-      int targetX;
-      int targetY;
-      switch (direction)
-      {
-
-        case 'N':
-            targetY = positionY-1;
-            while(targetY>=0)
-            {
-
-              if(testCollisionWithWall(positionX,targetY))
-              {
-                //Mur de glace
-                if(game.getBoard()[positionX][targetY] == 'I')
-                {
-                  System.out.println("Fondu");
-                  char[][] newBoard = game.getBoard();
-                  newBoard[positionX][targetY] = 'M';
-                  break;
-                }
-              }
-              else if(testVictory(positionX,targetY))
-              {
-                //Reflect
-                if(game.getPlayers().length >2)
-                {
-                  respawn();
-                }
-                else
-                {
-                  uTurn();
-                }
-                break;
-              }
-              else if(testCollisionWithTurtle(positionX,targetY) != null)
-              {
-                if(game.getPlayers().length >2)
-                {
-                  testCollisionWithTurtle(positionX,targetY).respawn();
-                }
-                else
-                {
-                  testCollisionWithTurtle(positionX,targetY).uTurn();
-                }
-                break;
-              }
-              targetY--;
-            }
-            break;
-        case 'S':
-          targetY = positionY+1;
-          while(targetY<8)
-          {
-            System.out.println("Test de la case " + positionX + " " + targetY);
-            if(testCollisionWithWall(positionX,targetY))
-            {
-              //Mur de glace
-              if(game.getBoard()[positionX][targetY] == 'I')
-              {
-                System.out.println("Fondu");
-                char[][] newBoard = game.getBoard();
-                newBoard[positionX][targetY] = 'M';
-                break;
-              }
-            }
-            else if(testVictory(positionX,targetY))
-            {
-              //Reflect
-              if(game.getPlayers().length >2)
-              {
-                respawn();
-              }
-              else
-              {
-                uTurn();
-              }
-              break;
-            }
-            else if(testCollisionWithTurtle(positionX,targetY) != null)
-            {
-              if(game.getPlayers().length >2)
-              {
-                testCollisionWithTurtle(positionX,targetY).respawn();
-              }
-              else
-              {
-                testCollisionWithTurtle(positionX,targetY).uTurn();
-              }
-              break;
-            }
-            targetY++;
-          }
-          break;
-        case 'W':
-          targetX = positionX-1;
-          while(targetX>=0)
-          {
-            if(testCollisionWithWall(targetX,positionY))
-            {
-              //Mur de glace
-              if(game.getBoard()[targetX][positionY] == 'I')
-              {
-                System.out.println("Fondu");
-                char[][] newBoard = game.getBoard();
-                newBoard[targetX][positionY] = 'M';
-                break;
-              }
-            }
-            else if(testVictory(targetX,positionY))
-            {
-              //Reflect
-              if(game.getPlayers().length >2)
-              {
-                respawn();
-              }
-              else
-              {
-                uTurn();
-              }
-              break;
-            }
-            else if(testCollisionWithTurtle(targetX,positionY) != null)
-            {
-              if(game.getPlayers().length >2)
-              {
-                testCollisionWithTurtle(targetX,positionY).respawn();
-              }
-              else
-              {
-                testCollisionWithTurtle(targetX,positionY).uTurn();
-              }
-              break;
-            }
-            targetX--;
-          }
-          break;
-        case 'E':
-          targetX = positionX+1;
-          while(targetX<8)
-          {
-            if(testCollisionWithWall(targetX,positionY))
-            {
-              //Mur de glace
-              if(game.getBoard()[targetX][positionY] == 'I')
-              {
-                System.out.println("Fondu");
-                char[][] newBoard = game.getBoard();
-                newBoard[targetX][positionY] = 'M';
-                break;
-              }
-            }
-            else if(testVictory(targetX,positionY))
-            {
-              //Reflect
-              if(game.getPlayers().length >2)
-              {
-                respawn();
-              }
-              else
-              {
-                uTurn();
-              }
-              break;
-            }
-            else if(testCollisionWithTurtle(targetX,positionY) != null)
-            {
-              if(game.getPlayers().length >2)
-              {
-                testCollisionWithTurtle(targetX,positionY).respawn();
-              }
-              else
-              {
-                testCollisionWithTurtle(targetX,positionY).uTurn();
-              }
-              break;
-            }
-            targetX++;
-          }
-          break;
-      }
-
+      System.out.println("turtle shoot !");
   }
 
   private void move(int targetX, int targetY)
@@ -412,10 +266,6 @@ public class Turtle {
         testCollisionWithTurtle(targetX,targetY).respawn();
         respawn();
       }
-      else if(testVictory(targetX,targetY))
-      {
-        System.out.println("Victoire du joueur "+(game.getCurrentPlayer()+1));
-      }
       else
       {
         //pas de collision
@@ -431,32 +281,7 @@ public class Turtle {
     positionY = spawnY;
     direction = spawnDirection;
   }
-  /**
-   * fonction pour tourner l'image lorsque la tortue tourne
-   * @param img
-   * @param angle
-   * @return
-   */
-  public  BufferedImage rotate(BufferedImage img, double angle){
-    System.out.println("rotating");
-    double sin = Math.abs(Math.sin(Math.toRadians(angle))),
-            cos = Math.abs(Math.cos(Math.toRadians(angle)));
 
-    int width = img.getWidth(null), height = img.getHeight(null);
-
-    int newWidth = (int) Math.floor(width*cos + height*sin),
-            newHeight = (int) Math.floor(height*cos + width*sin);
-
-    BufferedImage bimg = new BufferedImage(newWidth, newHeight,BufferedImage.TYPE_INT_ARGB);
-    Graphics2D g = bimg.createGraphics();
-
-    g.translate((newWidth-width)/2, (newHeight-height)/2);
-    g.rotate(Math.toRadians(angle), width/2, height/2);
-    g.drawRenderedImage(img, null);
-    g.dispose();
-
-    return bimg;
-  }
 
   /**
    */
@@ -488,7 +313,10 @@ public class Turtle {
    */
   public boolean testCollisionWithWall(int targetX, int targetY)
   {
-
+      
+      System.out.println("targetX : "+targetX);
+      System.out.println("targetY : "+targetY);
+      
       if(game.getBoard()[targetX][targetY] == 'I' || game.getBoard()[targetX][targetY] == 'S')
       {
         return true;
@@ -527,15 +355,6 @@ public class Turtle {
     return null;
   }
 
-  private boolean testVictory(int targetX, int targetY) {
 
-    if(game.getBoard()[targetX][targetY] == 'G')
-    {
-        return true;
-    }
-    else {
-        return false;
-    }
-  }
 
 }

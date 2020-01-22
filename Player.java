@@ -2,7 +2,7 @@ package NewRobotTurtle;
 
 import java.awt.*;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * Class Player
@@ -209,10 +209,6 @@ public class Player {
    */
   public void drawCard()
   {
-      if(deck.size()==0){
-        shuffle();
-      }
-
       if(deck.size()>0)
       {
         int index = (int) (Math.random()*deck.size());
@@ -221,36 +217,19 @@ public class Player {
 
       }
 
-
   }
 
 
   public void placeWall(int targetX, int targetY,char wallType) {
-
-    if (game.wallCollisionTest(targetX, targetY)) {
-
-      if (wallType=='S') {
-        if (game.wallPathTest(targetX, targetY)) {
-
-          char[][] newBoard = game.getBoard();
-          newBoard[targetX][targetY] = wallType;
-          game.setBoard(newBoard);
-          System.out.println("Mur placé");
-          game.setGameState("Discard");
-        } else {
-          System.out.println("Emplacement non valide");
-        }
-
-      } else {
-        char[][] newBoard = game.getBoard();
-        newBoard[targetX][targetY] = wallType;
-        game.setBoard(newBoard);
-        System.out.println("Mur placé");
-        game.setGameState("Discard");
-      }
-    } else {
-      System.out.println("Emplacement non valide");
-    }
+   // if (game.wallTest(coord)) {
+      char[][] newBoard= game.getBoard();
+      newBoard[targetX][targetY] = wallType;
+      game.setBoard(newBoard);
+      System.out.println("Mur placé");
+      game.setGameState("Discard");
+    //} else{
+    //  System.out.println("Emplacement non valide");
+    //}
   }
 
 
@@ -270,10 +249,8 @@ public class Player {
     {
       program.getFirst().effect(turtle);
       program.pollFirst();
-
     }
     game.setGameState("Discard");
-
   }
 
 
@@ -376,8 +353,6 @@ public class Player {
 
   private void shuffle()
   {
-    deck = graveyard;
-    graveyard.clear();
   }
 
 
