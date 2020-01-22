@@ -226,15 +226,31 @@ public class Player {
 
 
   public void placeWall(int targetX, int targetY,char wallType) {
-   // if (game.wallTest(coord)) {
-      char[][] newBoard= game.getBoard();
-      newBoard[targetX][targetY] = wallType;
-      game.setBoard(newBoard);
-      System.out.println("Mur placé");
-      game.setGameState("Discard");
-    //} else{
-    //  System.out.println("Emplacement non valide");
-    //}
+
+    if (game.wallCollisionTest(targetX, targetY)) {
+
+      if (wallType=='S') {
+        if (game.wallPathTest(targetX, targetY)) {
+
+          char[][] newBoard = game.getBoard();
+          newBoard[targetX][targetY] = wallType;
+          game.setBoard(newBoard);
+          System.out.println("Mur placé");
+          game.setGameState("Discard");
+        } else {
+          System.out.println("Emplacement non valide");
+        }
+
+      } else {
+        char[][] newBoard = game.getBoard();
+        newBoard[targetX][targetY] = wallType;
+        game.setBoard(newBoard);
+        System.out.println("Mur placé");
+        game.setGameState("Discard");
+      }
+    } else {
+      System.out.println("Emplacement non valide");
+    }
   }
 
 

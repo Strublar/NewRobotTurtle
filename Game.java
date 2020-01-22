@@ -12,6 +12,7 @@ public class Game {
   private int currentPlayer;
   private Player[] players;
   private char[][] board;
+  private char[][] map;
   private String gameState;
   private Window window;
 
@@ -37,6 +38,8 @@ public class Game {
 
         board[2][3]='I';
         board[6][5]='S';
+        board[4][7]='S';
+        board[3][6]='S';
         board[3][7]='G';
 
 
@@ -149,74 +152,117 @@ public class Game {
 
 
 
+    public boolean wallCollisionTest(int xWall, int yWall) {
 
-    public boolean wallTest(int xWall, int yWall) {
-        this.map = this.board;
+        for (Player player : players)
+         {
+            this.map = new char[8][8];
+            int turtleX = player.getTurtle().getPositionX();
+            int turtleY = player.getTurtle().getPositionY();
 
-        //TODO: faire une boucle pour tout les joueurs
+            if ( (this.board[xWall][yWall] != ' ') || ((xWall==turtleX)&& (yWall==turtleY)) ) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-        int turtleX = Player.getturtle().positionX;
-        int turtleY = Player.getturtle().positionY;
-        //On commence par tester si l'emplacement est libre
+    public boolean wallPathTest(int xWall, int yWall) {
+
         if (this.board[xWall][yWall] != ' ') {
             return false;
         }
 
-        this.map[yWall][xWall] = 'w';
 
-        int xMax = this.board[0].length - 1;
-        int yMax = this.board.length - 1;
+        for (Player player : players) {
+            this.map = new char[8][8];
 
-        //on prend comme coordonnées de départ celles de la tortue
-        int x = turtleX;
-        int y = turtleY;
+            System.out.print("\n");
+            System.out.print("nouveau joueur");
+            System.out.print("\n\n");
 
-        int nV = 0; //nVest le nombre de cases visités après la maj
-        int nVBefore = 0; //nVest le nombre de cases visités la maj
-        this.map[turtleY][turtleX] = 'v'; //la 1ere case visitée est celle sur laquelle est placé la tortue
-        do {
-            //affichage de la map pour les tests
-            /*
-            for (int k = 0; k <= yMax; k++) {
-                System.out.print(this.map[k]);
-                System.out.print("\n");
-            } */
+            int turtleX = player.getTurtle().getPositionX();
+            int turtleY = player.getTurtle().getPositionY();
 
-    nVBefore = nV;
+            //On commence par tester si l'emplacement est libre
 
-            for (int i = 0; i <= yMax; i++) { //pour chaque ligne
-        for (int j = 0; j <= xMax; j++) { //pour chaque colonne
-            if (this.map[i][j] == 'v') { //si on est sur une case visitée
-                int[] resMaj = majAdj(j, i); //on met a jour les cases adjacentes
-                if (resMaj[0] == 1) { //si la mise à jour trouve la gemme on renvoie true
-                    System.out.print("OK!");
-                    return true;
+            this.board[xWall][yWall] = 'w';
+
+            int xMax = this.board[0].length - 1;
+            int yMax = this.board.length - 1;
+
+            //on prend comme coordonnées de départ celles de la tortue
+            int x = turtleX;
+            int y = turtleY;
+
+            int nV = 0; //nVest le nombre de cases visités après la maj
+            int nVBefore = 0; //nVest le nombre de cases visités la maj
+            this.map[turtleX][turtleY] = 'v'; //la 1ere case visitée est celle sur laquelle est placé la tortue
+            boolean possiblePath = false; //vartiable passant à true si il existe un chemin
+
+
+            do {
+                //si on à trouvé un chemin on sort de la boucle
+                if (possiblePath) {
+                    break;
                 }
-                nV = nV + resMaj[1];
+
+                nVBefore = nV;
+
+                for (int i = 0; i <= xMax; i++) { //pour chaque ligne
+                    //si on à trouvé un chemin on sort de la boucle
+                    if (possiblePath) {
+                        break;
+                    }
+                    for (int j = 0; j <= yMax; j++) { //pour chaque colonne
+                        if (possiblePath) {
+                            break;
+                        }
+                        if (this.map[i][j] == 'v') { //si on est sur une case visitée
+
+                            //affichage de la map pour les tests
+                            for (int k = 0; k <= xMax; k++) {
+                                System.out.print(this.map[k]);
+                                System.out.print("\n");
+                            }
+                            //affichage  pour les tests
+                            System.out.print("\n\n");
+
+                            int[] resMaj = majAdj(i, j); //on met a jour les cases adjacentes
+                            if (resMaj[0] == 1) { //si la mise à jour trouve la gemme on renvoie true
+                                System.out.print("Chemin OK!");
+                                possiblePath=true;
+                                break;
+                            }
+                            nV = nV + resMaj[1];
+                        }
+                    }
+                }
+
+            } while (nVBefore != nV);
+
+            //si on à trouvé aucun chemin possible on retourne false
+            if (possiblePath==false) {
+                System.out.print("Aucun chemin !");
+                return false;
             }
         }
+        //si tout les joueurs peuvent accéder à la gemme
+        return true;
     }
-    //affichage  pour les tests
-    //System.out.print("\n\n");
-} while (nVBefore != nV);
-
-        //si on sort de la boucle c'est que le nombre de sommet ne change plus, et donc qu'il n'y à pas de chemin possible
-        System.out.print("Impossible !");
-        return false;
-        }
 
     //fonction permettant de mettre à jour les cases adjacentes à celle de coordonnée x,y
-//renvoie un couple (win,nV) avec win prenant la valeur 1 si on à trouver la gemme et 0 sinon
-//et nV le nombre de cases adjacentes changées en "sommet visité"
+    //renvoie un couple (win,nV) avec win prenant la valeur 1 si on à trouver la gemme et 0 sinon
+    //et nV le nombre de cases adjacentes changées en "sommet visité"
     private int[] majAdj(int x, int y) {
         int xMax = this.board[0].length - 1;
         int yMax = this.board.length - 1;
 
         int nV = 0;
-        int n = 0;
-        int m = 0;
 
         //boucle permettant de tester les 4 cases adjacentesà celle de coordonnées x,y
+        int n = 0;
+        int m = 0;
         for (int i = 1; i <= 4; i++) {
 
             if (i == 1) {
@@ -235,10 +281,10 @@ public class Game {
 
             //on commence par tester si la coordonnée existe
             if ((x + n >= 0) && (y + m >= 0) && (x + n <= xMax) && (y + m <= yMax)) {
-                if (this.map[y + m][x + n] == 'g') { //si oui et c'est la gemme, on renvoie "1"
+                if (this.board[x + n][y + m] == 'G') { //si oui et c'est la gemme, on renvoie "1"
                     return (new int[]{1, 0});
-                } else if (this.map[y + m][x + n] == ' ') { //sinon si c'est une case vide on la marque comme "visitée"
-                    this.map[y + m][x + n] = 'v';
+                } else if ((this.board[x + n][y + m] == ' ')&& (this.map[x + n][y + m]=='\u0000')) { //sinon si c'est une case vide on la marque comme "visitée"
+                    this.map[x + n][y + m] = 'v';
                     nV = nV + 1;
                 }
             }
@@ -247,4 +293,3 @@ public class Game {
         return (new int[]{0, nV});
     }
 }
-
