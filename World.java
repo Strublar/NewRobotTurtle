@@ -68,22 +68,13 @@ public class World extends JPanel{
             names.add("Pi");
             colors.add(new Color(151,15,44)); //red
 
-            //test pour positionner les tortues
-            
-            game.getPlayers()[0].getTurtle().setPositionX(0);
-            game.getPlayers()[0].getTurtle().setPositionY(2);
-            game.getPlayers()[1].getTurtle().setPositionX(3);
-            game.getPlayers()[1].getTurtle().setPositionY(1);
-            
-
-            assignTurtlesAndColors();
 
         } catch (IOException ex) {
             Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    private void assignTurtlesAndColors(){
+    public void assignTurtlesAndColors(){
         for(Player player : game.getPlayers()){
             int randomNum = ThreadLocalRandom.current().nextInt(0, this.turtleImages.size());
             player.getTurtle().setTurtleImage(turtleImages.get(randomNum));
@@ -142,7 +133,7 @@ public class World extends JPanel{
 
         //murs
         drawWalls(g,current);
-
+        
         //nom joueur
         drawName(g,current);
         
@@ -258,7 +249,48 @@ public class World extends JPanel{
                 g.drawString("Choisissez la case pour le mur", 1026+12+200-35-5, 146+250+15+250+15+250+15+40);
                 break;
             case "Menu" :
-                //g.drawString("Faites votre choix", WIDTH, WIDTH);
+                g.setColor(Color.white);
+                g.fillRect(0+300, 0+200, 1920-300-300, 1096-200-200-62);
+                
+                g.setColor(Color.black);
+                g.drawRect(0+300, 0+200, 1920-300-300, 1096-200-200-62);
+                g.drawRect(0+300-1, 0+200-1, 1920-300-300+2, 1096-200-200+2-62);
+                
+                
+                g.setColor(Color.gray);
+                //phrase
+                g.fillRect(110+300+20-10, 300-45, 1100, 60);
+                
+                //2 3 4
+                if(game.getPlayerCount()==2){
+                    g.drawRect(200+110+300+20-10-2, 500-45, 50, 60);
+                    g.drawRect(200+110+300+20-10-2-1, 500-45-1, 50+2, 60+2);
+                }
+                else if(game.getPlayerCount()==3){
+                    g.drawRect(200+110+300+20+300-10-2, 500-45, 50, 60);
+                    g.drawRect(200+110+300+20+300-10-2-1, 500-45-1, 50+2, 60+2);
+                }
+                else if(game.getPlayerCount()==4){
+                    g.drawRect(200+110+300+20+600-10-2, 500-45, 50, 60);
+                    g.drawRect(200+110+300+20+600-10-2-1, 500-45-1, 50+2, 60+2);
+                }
+                //lancer partie
+                g.fillRect(110+300+20+350-50+4, 700-45, 400, 60);
+                
+                g.setColor(Color.black);
+                g.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
+                
+                g.drawString("Choisissez le nombre de joueurs puis lancez la partie !", 110+300+20, 300);
+                
+                
+                g.drawString("2", 200+110+300+20, 500);
+                g.drawString("3", 200+110+300+20+300, 500);
+                g.drawString("4", 200+110+300+20+600, 500);
+                
+                g.drawString("Lancer la partie", 110+300+20+350, 700);
+                
+                
+                
                 break;
             case "Victory" :
                 g.setColor(Color.white);
@@ -277,15 +309,6 @@ public class World extends JPanel{
                 g.setColor(current.getTurtle().getColor());
                 g.drawString("Victoire", (1920-300-300+2+300)/3+50+30+50, (1096-200-200+200)/3*2-150+60-62+20);
                 g.drawString("Joueur "+game.getCurrentPlayer(), (1920-300-300+2+300)/3+50+50, (1096-200-200+200)/3*2+60-62+20);
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
                 break;
         }

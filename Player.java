@@ -209,6 +209,10 @@ public class Player {
    */
   public void drawCard()
   {
+      if(deck.size()==0){
+        shuffle();
+      }
+
       if(deck.size()>0)
       {
         int index = (int) (Math.random()*deck.size());
@@ -217,19 +221,36 @@ public class Player {
 
       }
 
+
   }
 
 
   public void placeWall(int targetX, int targetY,char wallType) {
-   // if (game.wallTest(coord)) {
-      char[][] newBoard= game.getBoard();
-      newBoard[targetX][targetY] = wallType;
-      game.setBoard(newBoard);
-      System.out.println("Mur placé");
-      game.setGameState("Discard");
-    //} else{
-    //  System.out.println("Emplacement non valide");
-    //}
+
+    if (game.wallCollisionTest(targetX, targetY)) {
+
+      if (wallType=='S') {
+        if (game.wallPathTest(targetX, targetY)) {
+
+          char[][] newBoard = game.getBoard();
+          newBoard[targetX][targetY] = wallType;
+          game.setBoard(newBoard);
+          System.out.println("Mur placé");
+          game.setGameState("Discard");
+        } else {
+          System.out.println("Emplacement non valide");
+        }
+
+      } else {
+        char[][] newBoard = game.getBoard();
+        newBoard[targetX][targetY] = wallType;
+        game.setBoard(newBoard);
+        System.out.println("Mur placé");
+        game.setGameState("Discard");
+      }
+    } else {
+      System.out.println("Emplacement non valide");
+    }
   }
 
 
@@ -249,8 +270,14 @@ public class Player {
     {
       program.getFirst().effect(turtle);
       program.pollFirst();
+
     }
-    game.setGameState("Discard");
+    if(!game.getGameState().equals("Victory"))
+    {
+      game.setGameState("Discard");
+    }
+
+
   }
 
 
@@ -298,44 +325,21 @@ public class Player {
 
   }
 
-  public void removeCardFromBench(int select)
-  {
-    if(select<bench.size())
-    {
+  public void removeCardFromBench(int select) {
+    if (select < bench.size()) {
       System.out.println(bench.size());
       hand.add(bench.get(select));
       bench.remove(select);
-      if(bench.size()==0)
-      {
+      if (bench.size() == 0) {
         game.setGameState("Turn");
       }
-    }
-    else
-    {
+    } else {
       System.out.println("Cette carte n'existe pas");
     }
-
   }
- /* private char chooseWall()
-  {
-    //TODO Choix du mur, et vérifier si il en reste
-    if (this.nbStoneWall == 0) && (this.nbIceWall == 0) {
-      System.out.println("Plus aucun mur disponible!");
-  } else {
-    Window.setWindowState(String "WallChoice");
-    char choix = mouseClicked();
-    if (choix == "S") {
-      this.nbStoneWall--;
-      return choix;
-    } else if (choix = "I"){
-      this.nbIceWall--;
-      return choix;
-    } else if (choix = "E"){
-      choiceTurn();
-    }
 
 
-*/
+
 
 
 
@@ -353,6 +357,8 @@ public class Player {
 
   private void shuffle()
   {
+    deck = graveyard;
+    graveyard.clear();
   }
 
 
