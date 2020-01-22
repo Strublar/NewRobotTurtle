@@ -23,5 +23,4 @@ public class ForwardCard extends Card {
     //faire avancer la tortue
     turtle.forward();
   }
-
 }
