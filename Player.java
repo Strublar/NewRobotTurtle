@@ -238,23 +238,24 @@ public class Player {
   }
 
 
-  /**
-   */
-  public void executeProgram()
-  {
-    while(program.size()>0)
+    /**
+     */
+    public void executeProgram()
     {
-      program.getFirst().effect(turtle);
-      program.pollFirst();
+      while(program.size()>0)
+      {
+        program.getFirst().effect(turtle);
+        graveyard.add(program.getFirst());
+        program.pollFirst();
+
+      }
+      if(!game.getGameState().equals("Victory"))
+      {
+        game.setGameState("Discard");
+      }
+
 
     }
-    if(!game.getGameState().equals("Victory"))
-    {
-      game.setGameState("Discard");
-    }
-
-
-  }
 
 
   /**
