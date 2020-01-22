@@ -230,23 +230,26 @@ public class Player {
     if (game.wallCollisionTest(targetX, targetY)) {
 
       if (wallType=='S') {
-        if (game.wallPathTest(targetX, targetY)) {
+        if (this.getNbStoneWall() > 0) {
+          if (game.wallPathTest(targetX, targetY)) {
 
-          char[][] newBoard = game.getBoard();
-          newBoard[targetX][targetY] = wallType;
-          game.setBoard(newBoard);
-          System.out.println("Mur placé");
-          game.setGameState("Discard");
-        } else {
-          System.out.println("Emplacement non valide");
+            char[][] newBoard = game.getBoard();
+            newBoard[targetX][targetY] = wallType;
+            game.setBoard(newBoard);
+            System.out.println("Mur placé");
+            game.setGameState("Discard");
+            this.setNbStoneWall(this.getNbStoneWall() - 1);
+          } else {
+            System.out.println("Emplacement non valide");
+          }
         }
-
-      } else {
+      } else if (this.getNbIceWall() > 0){
         char[][] newBoard = game.getBoard();
         newBoard[targetX][targetY] = wallType;
         game.setBoard(newBoard);
         System.out.println("Mur placé");
         game.setGameState("Discard");
+        this.setNbIceWall(this.getNbIceWall()-1);
       }
     } else {
       System.out.println("Emplacement non valide");
