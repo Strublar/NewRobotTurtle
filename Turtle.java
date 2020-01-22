@@ -524,6 +524,7 @@ public class Turtle {
         direction = 'E';
         break;
     }
+    turtleImage = rotate(turtleImage,180);
 
   }
 
