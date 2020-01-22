@@ -228,7 +228,7 @@ public class World extends JPanel{
         }
         else{
             //défausse pas vide donc on met l'image de la dernière carte
-            g.drawImage(getCardImage(current.getGraveyard().get(current.getGraveyard().size()-1)),820+12+(135+4)*2,146,this);
+            g.drawImage(getCardImage(current.getGraveyard().get(current.getGraveyard().size()-1)),820+12,146,this);
         }
     }
 
@@ -264,6 +264,11 @@ public class World extends JPanel{
         else{
             return null; //eh ya rien
         }
+    }
+
+    public void refresh()
+    {
+        super.repaint();
     }
 
 

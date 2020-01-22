@@ -40,91 +40,134 @@ public class Mousy implements MouseListener{
      */
     public void mousePressed(MouseEvent e){
         //System.out.println("mouse pressed at x:"+e.getX()+" y:"+e.getY());
-      String state = this.window.getWindowState();
-      if(state.equals("Menu"))
+    String state = this.game.getGameState();
+    System.out.println("Etat de la variable : "+state);
+    System.out.println("Coordonnées : "+e.getX()+" "+e.getY());
+    if(state.equals("Turn"))
+    {
+
+      // WallChoice
+
+      if (e.getX() >= 820+12 && e.getX() <= 820+12+95 && e.getY() >= 12 && e.getY() <= 12+95) {
+        game.setGameState("ChooseTile");
+        game.getPlayers()[game.getCurrentPlayer()].setSelectedWall('S');
+        System.out.println("TEEEEEEEEEEEEEEEEEST 1");
+      }
+      if (e.getX() >= 820+12+95+4+95+4+20 && e.getX() <= 820+12+95+4+95+4+20+95 && e.getY() >= 12 && e.getY() <= 12+95)
       {
-
-        // WallChoice
-
-        if (e.getX() >= 820+12) && (e.getX() <= 820+12+95) && (e.getY() >= 12) && (e.getY() <= 12+95) {
-          Window.setWindowState(String "ChooseTile");
-          char wallType='S';
-            Player.placeWall(wallType);
-        } else if (e.getX() <= 820+12+95+4+95+4+20) && (e.getX() >= 820+12+95+4+95+4+20+95) && (e.getY() <= 12) && (e.getY() >= 12+95)  {
-          Window.setWindowState(String "ChooseTile");
-          char wallType='I';
-            Player.placeWall(wallType);
-        }
-          // CardChoice
-
-          else if (e.getX() >= 820+12) && (e.getX() <= 820+12+135) && (e.getY() >= 146+200+51) && (e.getY() <= 146+200+51+200) {
-          return(1);
-        } else if (e.getX() >= 820+12+(135+4)*1) && (e.getX() <= 820+12+(135+4)*1+135) && (e.getY() >= 146+200+51) && (e.getY() <= 146+200+51+200) {
-          return(2);
-        } else if (e.getX() >= 820+12+(135+4)*2) && (e.getX() <= 820+12+(135+4)*2+135) && (e.getY() >= 146+200+51) && (e.getY() <= 146+200+51+200) {
-          return(3);
-        } else if (e.getX() >= 820+12+(135+4)*3) && (e.getX() <= 820+12+(135+4)*3+135) && (e.getY() >= 146+200+51) && (e.getY() <= 146+200+51+200) {
-          return(4);
-        }else if (e.getX() >= 820+12+(135+4)*4) && (e.getX() <= 820+12+(135+4)*4+135) && (e.getY() >= 146+200+51) && (e.getY() <= 146+200+51+200) {
-          return(5);
-        }
-
-          // Fin de tour
-
-          else if (e.getX() >= 820+12+(135+4)*4+15) && (e.getX() <= 820+12+(135+4)*4+15+120) && (e.getY() >= 146) && (e.getY() <= 146+40)  {
-            return (2);
-          }
-          // Défausse
-
-          else if (e.getX() >= 820+12+(135+4)*1) && (e.getX() <= 820+12+(135+4)*1+135) && (e.getY() >= 146+200+51) && (e.getY() <= 146+200+51+200) {
-            return(3);
-          }
+        game.setGameState("ChooseTile");
+        game.getPlayers()[game.getCurrentPlayer()].setSelectedWall('I');
+        System.out.println("TEEEEEEEEEEEEEEEEEST 2");
+      }
     }
       //Choix de la case
-    else if(state.equals("ChooseTile")) {
-      if (e.getX() >= 12) && (e.getX() <= 12+(95+4)*7) && (e.getY() >= 12) && (e.getY() <= 12+(95+4)*8) {
+    if(state.equals("ChooseTile")) {
+      if (e.getX() >= 12 && e.getX() <= 12+(95+4)*7 && e.getY() >= 12 && e.getY() <= 12+(95+4)*8) {
         int x = (e.getX()-12)/(95+4);
         int y = (e.getY()-12)/(95+4);
-        return (x,y);
+        game.getPlayers()[game.getCurrentPlayer()].placeWall(x,y,game.getPlayers()[game.getCurrentPlayer()].getSelectedWall());
       }
 
       }
-      else if(state.equals("Choice"))
+
+      //Ajouter une carte au programme
+      if(state.equals("Turn") || state.equals("AddCard") || state.equals("Discard"))
       {
-        //Faire les tests relatifs au choix de l'action du tour du joueur
-      }
-      else if(state.equals("Turn"))
-      {
-        //Faire les tests relatifs au tour du jeu (choisir carte/clic sur le terrain
-        if(this.game.getPlayers()[this.game.getCurrentPlayer()].getPlayerState().equals("AddCard"))
+
+        int offsetX = 820+12;
+        int length = 135;
+        int betweenX = 4;
+
+        int offsetY =  146 + 200 + 51;
+        int height = 200;
+        int betweenY = 200+51;
+        for(int i=0;i<5;i++)
         {
-          int offsetX = 820+12;
-          int length = 135;
-          int betweenX = 4;
-
-          int offsetY =  146 + 200 + 51;
-          int height = 200;
-          int betweenY = 200+51;
-          for(int i=0;i<5;i++)
+          if(e.getX()>= offsetX + i*(length+betweenX) && e.getX()<= offsetX + length + i*(length+betweenX))
           {
-            if(e.getX()>= offsetX + i*(length+betweenX) && e.getX()<= offsetX + length + i*(length+betweenX))
+            if(e.getY()>= offsetY && e.getY()<= offsetY+height)
             {
-              if(e.getY()>= offsetY && e.getY()<= offsetY+height)
+              //Clic sur une carte à ajouter
+              this.game.getPlayers()[this.game.getCurrentPlayer()].chooseCard(i);
+              if(!state.equals("Discard"))
               {
-                //Clic sur une carte à ajouter
-
-              }
-              else if(e.getY()>= offsetY+betweenY && e.getY()<= offsetY+height+betweenY)
-              {
-                //Clic de validation
+                  this.game.setGameState("AddCard");
               }
             }
           }
         }
       }
+
+      //Retirer une carte du bench ou validation
+      if(state.equals("AddCard") || state.equals("Discard"))
+      {
+        //Retirer une carte du bench
+        int offsetX = 820+12;
+        int length = 135;
+        int betweenX = 4;
+
+        int offsetY = 146+200+51+200+51;
+        int height = 200;
+
+        for(int i=0;i<5;i++)
+        {
+          if(e.getX()>= offsetX + i*(length+betweenX) && e.getX()<= offsetX + length + i*(length+betweenX))
+          {
+            if(e.getY()>= offsetY && e.getY()<= offsetY+height)
+            {
+              //Clic sur une carte à retirer du bench
+              this.game.getPlayers()[this.game.getCurrentPlayer()].removeCardFromBench(i);
+
+            }
+          }
+        }
+
+        //Valider l'ajout de carte ou de la défausse
+        offsetX = 820+12+(135+4)*4+15;
+        length = 120;
+
+        offsetY = 176;
+        height = 40;
+
+        if(e.getX()>= offsetX && e.getX()<= offsetX+length)
+        {
+          if(e.getY() >= offsetY && e.getY() <= offsetY + height)
+          {
+            if(state.equals("AddCard"))
+            {
+              this.game.getPlayers()[this.game.getCurrentPlayer()].addToProgram();
+            }
+            else
+            {
+              this.game.getPlayers()[this.game.getCurrentPlayer()].discard();
+            }
+          }
+        }
+      }
+
+
+
+      //Executer le programme
+      if(state.equals("Turn"))
+      {
+        //Valider la défausse
+        int offsetX = 820+12+(135+4)*4+15;
+        int length = 120;
+
+        int offsetY = 176;
+        int height = 40;
+
+        if(e.getX()>= offsetX && e.getX()<= offsetX+length)
+        {
+          if(e.getY() >= offsetY && e.getY() <= offsetY + height)
+          {
+            this.game.getPlayers()[this.game.getCurrentPlayer()].executeProgram();
+          }
+        }
+      }
     }
 
-    
+
     
     /**
      * Invoked when a mouse button has been released on a component.

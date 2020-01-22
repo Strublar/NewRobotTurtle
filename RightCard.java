@@ -8,7 +8,6 @@ public class RightCard extends Card {
   //
   // Fields
   //
-   private String cardName;
 
   
   //
@@ -18,6 +17,10 @@ public class RightCard extends Card {
     cardName = "rightCard";
   };
 
+  @Override
+  public void effect(Turtle turtle) {
+    turtle.right();
+  }
   public String getCardName(){
       return this.cardName;
   }
