@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 public class World extends JPanel{
 
     BufferedImage boardImage;
+    BufferedImage endFlag1, endFlag2;
     BufferedImage turtleBeepImage, turtleDotImage, turtlePangleImage, turtlePiImage;
     ArrayList<BufferedImage> turtleImages;
     BufferedImage iceWallImage,iceWallMeltedImage, stoneWallImage, gemImage;
@@ -47,6 +48,9 @@ public class World extends JPanel{
             turtleDotImage = ImageIO.read(new File("images/turtleDot.png"));
             turtlePangleImage = ImageIO.read(new File("images/turtlePangle.png"));
             turtlePiImage = ImageIO.read(new File("images/turtlePi.png"));
+            
+            endFlag1 = ImageIO.read(new File("images/endFlag1.png"));
+            endFlag2 = ImageIO.read(new File("images/endFlag2.png"));
 
             turtleImages = new ArrayList();
             colors = new ArrayList();
@@ -238,6 +242,7 @@ public class World extends JPanel{
         g.setColor(Color.white);
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
         
+        
         game.getGameState();
         switch(game.getGameState()){
             case "Turn" :
@@ -256,7 +261,32 @@ public class World extends JPanel{
                 //g.drawString("Faites votre choix", WIDTH, WIDTH);
                 break;
             case "Victory" :
-                //g.drawString("Victoire", WIDTH, WIDTH);
+                g.setColor(Color.white);
+                g.fillRect(0+300, 0+200, 1920-300-300, 1096-200-200-62);
+                
+                g.setColor(Color.black);
+                g.drawRect(0+300, 0+200, 1920-300-300, 1096-200-200-62);
+                g.drawRect(0+300-1, 0+200-1, 1920-300-300+2, 1096-200-200+2-62);
+                
+                g.drawImage(endFlag1, 320, 265, this);
+                g.drawImage(endFlag2, 300+1920-300-300-320, 265, this);
+                
+                
+                
+                g.setFont(new Font("Comic Sans MS", Font.BOLD, 150));
+                g.setColor(current.getTurtle().getColor());
+                g.drawString("Victoire", (1920-300-300+2+300)/3+50+30+50, (1096-200-200+200)/3*2-150+60-62+20);
+                g.drawString("Joueur "+game.getCurrentPlayer(), (1920-300-300+2+300)/3+50+50, (1096-200-200+200)/3*2+60-62+20);
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 break;
         }
         
