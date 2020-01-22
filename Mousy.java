@@ -48,21 +48,68 @@ public class Mousy implements MouseListener{
     String state = this.game.getGameState();
     System.out.println("Etat de la variable : "+state);
     System.out.println("Coordonnées : "+(e.getX()-8)+" "+(e.getY()-30));
-    if(state.equals("Turn"))
+    if(state.equals("Menu")){
+        /*
+                    g.drawRect(200+110+300+20-10-2, 500-45, 50, 60);
+                    g.drawRect(200+110+300+20+300-10-2, 500-45, 50, 60);
+                g.fillRect(110+300+20+350-50+4, 700-45, 400, 60);
+        */
+      if ((e.getX()-8) >= 200+110+300+20-10-2 && (e.getX()-8) <= 200+110+300+20-10-2+50 && (e.getY()-30) >= 500-45 && (e.getY()-30) <= 500-45+60) {
+        game.setPlayerCount(2);
+      }
+      else if ((e.getX()-8) >= 200+110+300+20-10-2+300 && (e.getX()-8) <= 200+110+300+20-10-2+50+300 && (e.getY()-30) >= 500-45 && (e.getY()-30) <= 500-45+60) {
+        game.setPlayerCount(3);
+      }
+      else if ((e.getX()-8) >= 200+110+300+20-10-2+600 && (e.getX()-8) <= 200+110+300+20-10-2+50+600 && (e.getY()-30) >= 500-45 && (e.getY()-30) <= 500-45+60) {
+        game.setPlayerCount(4);
+      }
+
+      if ((e.getX()-8) >= 110+300+20+350-50+4 && (e.getX()-8) <= 110+300+20+350-50+4+400 && (e.getY()-30) >= 700-45 && (e.getY()-30) <= 700-45+60
+              && game.getPlayerCount()!=0) {
+        game.startGame(game.getPlayerCount());
+      }
+
+
+    }
+
+
+
+    if(state.equals("Turn") || state.equals("ChooseTile"))
     {
 
       // WallChoice
 
       if ((e.getX()-8) >= 1026+12 && (e.getX()-8) <= 1026+12+115 && (e.getY()-30) >= 12 && (e.getY()-30) <= 12+115) {
-        game.setGameState("ChooseTile");
-        game.getPlayers()[game.getCurrentPlayer()].setSelectedWall('S');
-        System.out.println("TEEEEEEEEEEEEEEEEEST 1");
+        if(state.equals("ChooseTile") && game.getPlayers()[game.getCurrentPlayer()].getSelectedWall()=='S')
+        {
+          game.setGameState("Turn");
+        }
+        else
+        {
+          if(game.getPlayers()[game.getCurrentPlayer()].getNbStoneWall()>0)
+          {
+            game.setGameState("ChooseTile");
+            game.getPlayers()[game.getCurrentPlayer()].setSelectedWall('S');
+          }
+        }
+
+
       }
       if ((e.getX()-8) >= 1026+12+115+4+115+4+20 && (e.getX()-8) <= 1026+12+115+4+115+4+20+115 && (e.getY()-30) >= 12 && (e.getY()-30) <= 12+115)
       {
-        game.setGameState("ChooseTile");
-        game.getPlayers()[game.getCurrentPlayer()].setSelectedWall('I');
-        System.out.println("TEEEEEEEEEEEEEEEEEST 2");
+        if(state.equals("ChooseTile") && game.getPlayers()[game.getCurrentPlayer()].getSelectedWall()=='I')
+        {
+          game.setGameState("Turn");
+        }
+        else
+        {
+          if(game.getPlayers()[game.getCurrentPlayer()].getNbIceWall()>0)
+          {
+            game.setGameState("ChooseTile");
+            game.getPlayers()[game.getCurrentPlayer()].setSelectedWall('I');
+          }
+        }
+
       }
     }
     //Choix de la case
@@ -173,6 +220,11 @@ public class Mousy implements MouseListener{
           this.game.getPlayers()[this.game.getCurrentPlayer()].executeProgram();
         }
       }
+    }
+    if(state.equals("Victory")){
+      //relance
+      game.resetGame();
+
     }
   }
 

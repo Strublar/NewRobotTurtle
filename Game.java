@@ -15,7 +15,7 @@ public class Game {
   private char[][] map;
   private String gameState;
   private Window window;
-
+  private int playerCount;
 
     //
 
@@ -36,6 +36,8 @@ public class Game {
         }
         players = new Player[1];
         players[0] = new Player(this);
+        playerCount = 0;
+        this.gameState="Menu";
     }
 
     
@@ -48,6 +50,16 @@ public class Game {
   //
   // Accessor methodss
   //
+
+
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
+    public void setPlayerCount(int playerCount) {
+        this.playerCount = playerCount;
+    }
+
     public Window getWindow() {
       return window;
     }
@@ -91,6 +103,16 @@ public class Game {
     //
     // Other methods
     //
+
+    public void resetGame(){
+        board = new char[8][8];
+        players = new Player[1];
+        players[0] = new Player(this);
+        playerCount = 0;
+        currentPlayer=0;
+        this.gameState="Menu";
+        window.getWorld().resetWorld();
+    }
 
     /**
      *
@@ -357,7 +379,7 @@ public class Game {
             if ((x + n >= 0) && (y + m >= 0) && (x + n <= xMax) && (y + m <= yMax)) {
                 if (this.board[x + n][y + m] == 'G') { //si oui et c'est la gemme, on renvoie "1"
                     return (new int[]{1, 0});
-                } else if (((this.board[x + n][y + m] == ' ')||(this.board[x + n][y + m] == 'I'))&& (this.map[x + n][y + m]=='\u0000')) { //sinon si c'est une case vide on la marque comme "visitée"
+                } else if ((this.board[x + n][y + m] == ' ')&& (this.map[x + n][y + m]=='\u0000')) { //sinon si c'est une case vide on la marque comme "visitée"
                     this.map[x + n][y + m] = 'v';
                     nV = nV + 1;
                 }

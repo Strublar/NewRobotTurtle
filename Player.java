@@ -184,25 +184,7 @@ public class Player {
   }
 
 
-  /**
-   * retourne les positions X Y en array
-   * @return       array
-   */
-  public ArrayList chooseTile()
-  {
-    ArrayList<Integer> Coord = new ArrayList<Integer>();
-    //TODO vérifier si la case est valide, et renvoyer les coordonées
-    System.out.println("Emplacement du mur choisis");
-    return (Coord);
-  }
 
-
-  /**
-   * pour le bug
-   */
-  public void chooseTarget()
-  {
-  }
 
 
   /**
@@ -230,38 +212,29 @@ public class Player {
     if (game.wallCollisionTest(targetX, targetY)) {
 
       if (wallType=='S') {
-        if (this.getNbStoneWall() > 0) {
-          if (game.wallPathTest(targetX, targetY)) {
+        if (game.wallPathTest(targetX, targetY)) {
 
-            char[][] newBoard = game.getBoard();
-            newBoard[targetX][targetY] = wallType;
-            game.setBoard(newBoard);
-            System.out.println("Mur placé");
-            game.setGameState("Discard");
-            this.setNbStoneWall(this.getNbStoneWall() - 1);
-          } else {
-            System.out.println("Emplacement non valide");
-          }
+          char[][] newBoard = game.getBoard();
+          newBoard[targetX][targetY] = wallType;
+          game.setBoard(newBoard);
+          System.out.println("Mur placé");
+          nbStoneWall--;
+          game.setGameState("Discard");
+        } else {
+          System.out.println("Emplacement non valide");
         }
-      } else if (this.getNbIceWall() > 0){
+
+      } else {
         char[][] newBoard = game.getBoard();
         newBoard[targetX][targetY] = wallType;
+        nbIceWall--;
         game.setBoard(newBoard);
         System.out.println("Mur placé");
         game.setGameState("Discard");
-        this.setNbIceWall(this.getNbIceWall()-1);
       }
     } else {
       System.out.println("Emplacement non valide");
     }
-  }
-
-
-  /**
-   */
-  private void addCard()
-  {
-    //TODO ajout d'une carte
   }
 
 

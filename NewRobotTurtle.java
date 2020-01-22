@@ -13,7 +13,7 @@ public class NewRobotTurtle {
         Game game= new Game();
         Window window = new Window("Menu", game);
         game.setWindow(window);
-        game.startGame(4);
+
     }
-    
+
 }
