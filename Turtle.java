@@ -3,6 +3,11 @@ package NewRobotTurtle;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 /**
  * Class Turtle
  */
@@ -442,6 +447,11 @@ public class Turtle {
     positionX = spawnX;
     positionY = spawnY;
     direction = spawnDirection;
+    if(!game.getGameState().equals("Menu"))
+    {
+      resetImage();
+      turtleImage = rotate(turtleImage,180);
+    }
   }
   /**
    * fonction pour tourner l'image lorsque la tortue tourne
@@ -472,7 +482,27 @@ public class Turtle {
 
   /**
    */
+  public void resetImage(){
+    try {
+      switch(this.name){
+        case "Beep" :
+          this.turtleImage = ImageIO.read(new File("images/turtleBeep.png"));
+          break;
+        case "Pangle" :
+          this.turtleImage = ImageIO.read(new File("images/turtlePangle.png"));
+          break;
+        case "Dot" :
+          this.turtleImage = ImageIO.read(new File("images/turtleDot.png"));
+          break;
+        case "Pi" :
+          this.turtleImage = ImageIO.read(new File("images/turtlePi.png"));
+          break;
+      }
+    } catch (IOException ex) {
+      Logger.getLogger(Turtle.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
+  }
 
 
   /**
