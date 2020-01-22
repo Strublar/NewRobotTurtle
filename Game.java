@@ -357,7 +357,7 @@ public class Game {
             if ((x + n >= 0) && (y + m >= 0) && (x + n <= xMax) && (y + m <= yMax)) {
                 if (this.board[x + n][y + m] == 'G') { //si oui et c'est la gemme, on renvoie "1"
                     return (new int[]{1, 0});
-                } else if ((this.board[x + n][y + m] == ' ')&& (this.map[x + n][y + m]=='\u0000')) { //sinon si c'est une case vide on la marque comme "visitée"
+                } else if (((this.board[x + n][y + m] == ' ')||(this.board[x + n][y + m] == 'I'))&& (this.map[x + n][y + m]=='\u0000')) { //sinon si c'est une case vide on la marque comme "visitée"
                     this.map[x + n][y + m] = 'v';
                     nV = nV + 1;
                 }
