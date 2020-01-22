@@ -265,11 +265,6 @@ public class Game {
 
     public boolean wallPathTest(int xWall, int yWall) {
 
-        if (this.board[xWall][yWall] != ' ') {
-            return false;
-        }
-
-
         for (Player player : players) {
             this.map = new char[8][8];
 
@@ -316,13 +311,13 @@ public class Game {
                         }
                         if (this.map[i][j] == 'v') { //si on est sur une case visitée
 
-                            //affichage de la map pour les tests
+                            /* //affichage de la map pour les tests
                             for (int k = 0; k <= xMax; k++) {
                                 System.out.print(this.map[k]);
                                 System.out.print("\n");
                             }
                             //affichage  pour les tests
-                            System.out.print("\n\n");
+                            System.out.print("\n\n"); */
 
                             int[] resMaj = majAdj(i, j); //on met a jour les cases adjacentes
                             if (resMaj[0] == 1) { //si la mise à jour trouve la gemme on renvoie true
@@ -339,6 +334,7 @@ public class Game {
 
             //si on à trouvé aucun chemin possible on retourne false
             if (possiblePath==false) {
+                this.board[xWall][yWall]=' ';
                 System.out.print("Aucun chemin !");
                 return false;
             }
